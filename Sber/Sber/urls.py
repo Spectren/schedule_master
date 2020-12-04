@@ -8,6 +8,8 @@ from django_registration.forms import RegistrationForm
 from HomePage.views import home_page_views
 from .forms import RegisterForm
 
+import Profile.views
+
 urlpatterns = [
     re_path(r'^auth/register/$', RegistrationView.as_view(form_class=RegisterForm, template_name='django_registration/registration_form.html', success_url='/auth/register/complete'), name='django_registration_register'),
     path('admin/', admin.site.urls),
@@ -15,5 +17,6 @@ urlpatterns = [
     re_path(r'^auth/logout/$', LogoutView.as_view(next_page='/')),
     url(r'^auth/', include('django_registration.backends.activation.urls')),
     url(r'^auth/', include('django.contrib.auth.urls')),
+    re_path(r'^profile/$', Profile.views.profile_view),
     re_path(r'^$', home_page_views)
 ]

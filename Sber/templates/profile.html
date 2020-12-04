@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="container inform">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="inf-av">
+                <div class="avatar"></div>
+                <p class="main-str">Фамилия</p>
+                <p class="main-str">Имя</p>
+                <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Специализация
+                    </a>
+                  
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="inf">
+                <h3>Учетные данные</h3>
+                <p class="str">ФИО</p>
+                <p class="main-str">Фамилия Имя Отчество</p>
+                <p class="str">Дата рождения</p>
+                <p class="main-str">dd-mm-yy</p>
+                <p class="str">Электронная почта</p>
+                <p class="main-str">name@mail.com</p>
+                <p class="str">Пол</p>
+                <p class="main-str">Мужской\Женский</p>
+                <p class="str">Телефон</p>
+                <p class="main-str">88005553535</p>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="inf">
+                <h3>Настройки отображения</h3>
+                <p class="main-str">Фамилия Имя</p>
+                <p class="str">Город</p>
+                <p class="main-str">Екатеринбург</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bimg-4"></div>
+{% endblock %}
