@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="all-content">
+    <nav class="navbar py-0 navbar-expand-lg navbar-light bg-light bg-custom">
+        <div class="container">
+            <div class="navbar-logo">
+                <a class="navbar-brand" href="#"><img src="{% static 'img/logo.png' %}" alt="icon"></a>
+                <a class="navbar-brand collapse navbar-collapse" href="#">Центр управления занятиями</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="main.html">Расписание</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html"></a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="nav-link active btn btn-primary w-100 pl-4 pr-4" >{{ user.username }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/auth/logout">Выйти</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/auth/login">Войти</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="note"></div> 
+    </div>
+{% endblock %}
