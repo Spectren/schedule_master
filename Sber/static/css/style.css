@@ -152,6 +152,17 @@ body{
     background-size: cover;
     width: 100%;
 }
+.bimg-5{
+    background: url(../images/top-view-workspace-with-glasses-cup-tea.png) 100% 100% no-repeat;
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    padding: 15%;
+}
+.table{
+    background-color: #fff;
+    opacity: 0.4;
+}
 
 /*----*Registration error styles----*/
 .errorlist {
