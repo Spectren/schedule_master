@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}Расписание{% endblock %}
+
+{% block content %}
+<form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="myfile">Choose file to upload</label>
+    <input type="file" id="myfile" name="myfile" accept=".xlsx">
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}
