@@ -127,3 +127,13 @@ a{
     color: black;
     font-size: 25px;
 }
+
+/*----*Registration error styles----*/
+.errorlist {
+    list-style-type: none;
+    padding: 0
+}
+.errorlist {
+    color: red;
+}
+/*---------------------------------*/
