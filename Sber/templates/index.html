@@ -24,11 +24,24 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ user.username }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Личный кабинет</a>
+                                <a class="dropdown-item" href="/auth/logout">Выйти</a>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <!--<li class="nav-item">
                         <span class="nav-link active btn btn-primary w-100 pl-4 pr-4" >{{ user.username }}</span>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/auth/logout">Выйти</a>
-                    </li>
+                    </li>-->
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" href="/auth/login">Войти</a>
