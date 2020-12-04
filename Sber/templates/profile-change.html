@@ -11,62 +11,56 @@
                 <div class="avatar"></div>
                 <p class="main-str">Имя</p>
                 <p class="main-str">Фамилия</p>
-                
             </div>
         </div>
         <div class="col-lg-4">
             <div class="inf">
                 <h3>Учетные данные</h3>
-                <p class="str">Имя</p>
                 <form method="post" action="########" class="needs-validation" novalidate>
                     {% csrf_token %}
                     <div class='form-group mb-3'>
+                        <p class="str">Имя</p>
                         <input type="text" class="form-control" name="first_name" placeholder="Имя" required>
                         {{ form.username.error }}
+                        <p class="str">Фамилия</p>
+                        <div class='form-group mb-3'>
+                            <input type="text" class="form-control" name="last_name" placeholder="Фамилия" required>
+                            {{ form.last_name.errors }}
+                        </div>
+                        <p class="str">Дата рождения</p>
+                        <div class='form-group mb-3'>
+                            <input type="date" class="form-control" name="date" placeholder="Возраст" required>
+                            {{ form.last_name.errors }}
+                        </div>
+                        <p class="str">Электронная почта</p>
+                        <div class='form-group mb-3'>
+                        <input type="email" class="form-control" name="email" placeholder="Почта" required>
+                        {{ form.email.errors }}
+                        </div>
+                        <p class="str">Пол</p>
+                        <input type="checkbox" class='form-check-input' value='' id="inputRemember">
+                        <label class="form-check-label ml-2 mr-2" for="inputRemember">Мужской</label>
+                        <input type="checkbox" class='form-check-input' value='' id="inputRemember">
+                        <label class="form-check-label ml-2" for="inputRemember">Женский</label>
+                        <p class="str mt-2">Телефон</p>
+                        <div class='form-group mb-3'>
+                        <input type="tel" class="form-control" name="tel" placeholder="Телефон" required>
+                        {{ form.email.errors }}
+                        </div>
+                        <p class="str">Город</p>
+                        <div class='form-group mb-3'>
+                        <input type="text" class="form-control" name="city" placeholder="Город" required>
+                        {{ form.email.errors }}
+                        </div>
+                        <button class="btn btn-secondary" type="submit">Сохранить</button>
                     </div>
-                </form>
-                <p class="str">Фамилия</p>
-                <form method="post" action="########" class="needs-validation" novalidate>
-                    {% csrf_token %}
-                    <div class='form-group mb-3'>
-                        <input type="text" class="form-control" name="last_name" placeholder="Фамилия" required>
-                        {{ form.last_name.errors }}
-                    </div>
-                </form>
-                <p class="str">Дата рождения</p>
-                <form method="post" action="########" class="needs-validation" novalidate>
-                    {% csrf_token %}
-                    <div class='form-group mb-3'>
-                        <input type="date" class="form-control" name="date" placeholder="Возраст" required>
-                        {{ form.last_name.errors }}
-                    </div>
-                </form>
-                <p class="str">Электронная почта</p>
-                <div class='form-group mb-3'>
-                    <input type="email" class="form-control" name="email" placeholder="Почта" required>
-                    {{ form.email.errors }}
-                </div>
-                <p class="str">Пол</p>
-                <input type="checkbox" class='form-check-input' value='' id="inputRemember">
-                    <label class="form-check-label ml-2 mr-2" for="inputRemember">Мужской</label>
-                <input type="checkbox" class='form-check-input' value='' id="inputRemember">
-                    <label class="form-check-label ml-2" for="inputRemember">Женский</label>
-                <p class="str mt-2">Телефон</p>
-                <div class='form-group mb-3'>
-                    <input type="tel" class="form-control" name="tel" placeholder="Телефон" required>
-                    {{ form.email.errors }}
-                </div>
+                </form> 
             </div>
         </div>
         <div class="col-lg-5">
             <div class="inf">
                 <h3>Настройки отображения</h3>
                 <p class="main-str">Фамилия Имя</p>
-                <p class="str">Город</p>
-                <div class='form-group mb-3'>
-                    <input type="text" class="form-control" name="city" placeholder="Город" required>
-                    {{ form.email.errors }}
-                </div>
                 <a href="/profile" class="str">Изменить данные</a>
             </div>
         </div>
