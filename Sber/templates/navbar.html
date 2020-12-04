@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<nav class="navbar fixed-top navbar-expand-md navbar-light">
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto mr-3">
+        <li class="nav-item">
+        <a class="nav-link" href="main.html">Главная</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link active" href="/auth/login">Войти</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/auth/register/">Регистрация</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="/profile">Профиль</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/auth/logout" role="button">Выйти</a>
+        </li>
+        {% endif %}
+    </ul>
+    </div>
+</nav>

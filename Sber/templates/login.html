@@ -4,7 +4,7 @@
 {% block title %}Авторизация{% endblock %}
 
 {% block content %}
-<div class='container'>
+<div class='container inform'>
     <div class='row justify-content-center align-items-center h-100'>
         <div class='col-12 сol-sm-8 col-md-6 col-lg-5 col-xl-4 text-center'>
             <div class='card'>
@@ -20,17 +20,18 @@
                         <div class='form-group mb-1'>
                             <input type="password" class='form-control' name='password' placeholder='Пароль' required>
                         </div>
-                        <a href='changepass.html' class='d-flex align-items-start mb-2'>Изменить пароль</a>
+                        <a href='changepass.html' class='d-flex align-items-center ml-auto mb-2 nav-link'>Изменить пароль</a>
                         <div class='form-check mb-3 d-flex align-items-start'>
                             <input type="checkbox" class='form-check-input' value='' id="inputRemember">
                             <label class="form-check-label" for="inputRemember">Запомнить меня</label>
                         </div>
                         <button type='submit' class="btn btn-secondary w-75">Войти</button>
                     </form>
-                    <a href="/auth/register/">Создать учетную запись</a>
+                    <a href="/auth/register/" class="nav-link">Создать учетную запись</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="bimg-4"></div>
 {% endblock %}

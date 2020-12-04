@@ -1,131 +1,156 @@
 body{
-    background-color: rgb(211, 247, 239);
-}
-.bg-custom{
-    background-color: hsla(145,50%,62%,0.4) !important;
-    border-radius: 15px 0px;
+    font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-transform: capitalize;
+    background-color:#E0DCDC;
 }
 .navbar{
-    margin:29px 29px 41px 29px;
+    background-color:none;
 }
-.jumbotron{
-    background: url('all-media/flat-lay-business-agenda.png');
+.nav-link{
+    color: #747474 !important;
 }
-.navbar .nav-link{
-    font-size: 20px;
-}
-.navbar-brand{
-    font-size: 30px;
-}
-.text1{
-    padding: 0 75px;
-}
-.display-4{
-    font-size: 35px;
-    font-weight: 500;
-}
-.lead{
-    font-size: 25px;
-    font-weight: 350;
-}
-.forma{
-    margin-top: 50px;
-}
-
-.jumbotron{
-    padding: 50px;
-}
-.jumbotron p{
-    padding-top: 40px;
-    padding-bottom: 20px;
-}
-.modal-header {
-    background-color: hsla(145,50%,62%,0.4);
-}
-.modal-footer{
-    background-color:hsla(145,50%,62%,0.4);
-}
-.btn{
-    color: #ffffff;
-    background-color:hsla(145,50%,62%,0.9) !important;
-}
-h1{
-    font-size: 35px;
-    color: #000;
-}
-a{
-    text-decoration: none;
-    color: #000;
-}
-
-.btn:focus,
-.btn-close:focus {
-    outline: 0px !important;
+.navbar-toggler,
+.navbar-toggler:active,
+.navbar-toggler:focus{
+    border: 0;
+    outline: none !important;
     box-shadow: none;
 }
-.text2{
-    padding:50px 200px;
+.start{
+    margin-top: 60px;
+    padding:120px 7%;
 }
-.text2 h3{
-    padding-bottom: 30px;
+.start-main{
+    width: 80%;
+    text-align: left;
 }
-.navbar-logo{
+.start-main h1{
+    font-size: 70px;
+    text-transform: initial;
+}
+.start-main h2{
+    font-size:30px;
+    text-align: center;
+    text-transform: initial;
+    font-weight: 400;
+}
+.bimg{
+    background: url(../images/dark-workplace-office.png) 100% 100% no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 239px;
+}
+.image-bg .row{
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.image-bg .row .col-lg-3,
+.image-bg .row .col-lg-9{
+    padding: 0;
+}
+.bimg-2{
+    background: url(../images/black-and-white-architecture-skyline-building-city-skyscraper-34264-pxhere\ 1.png) 100% 100% no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 756px;
+}
+.bimg-3{
+    background-color: #0B0B0B;
+    height: 756px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.bimg-3 h2{
+   text-align: left;
+   color:#fff;
+    width: 35%;
+    font-size: 40px;
+    line-height: 46px;
+    font-style: normal;
+    text-decoration: underline;
+    text-transform: none;
+}
+.bimg-3 p{
+    color:#fff;
+    width: 35%;
+    font-size: 40px;
+    line-height: 46px;
+    font-style: normal;
+    text-transform: none;
+}
+.dropdown-menu h2{
+    font-size: 12px;
+}
+.dropdown-item:active{
+    background-color: #E0DCDC;
+}
+.dropdown-menu .btn{
+    background-color: #747474;
+    border: none;
+}
+.modal-footer a{
+    text-decoration: none;
+    color: black;
+}
+.btn,
+.btn:active,
+.btn:focus{
+    border: 0;
+    outline: none !important;
+    box-shadow: none;
+}
+.modal-window{
+    display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .avatar{
     border-radius: 1000px;
-    background-color:rgb(158, 142, 142);
+    background-color:#9A9A9A;
     height: 200px;
     width: 200px;
 }
-.info>.str{
+.inform{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.inf{
+    text-transform: none;
+    padding-left: 40px;
+}
+.inf>.str{
     color: #9A9A9A;
     padding-bottom:10px;
 }
-.info>.main-str{
+.inf>.main-str{
     color: #000;
     padding-bottom: 25px;
 }
-.info>h3{
+.inf>h3{
     padding-bottom: 60px;
 }
-.note{
+.inf-av{
+    text-align: center;
+    padding-right: 40px;
+    margin-bottom: 50px;
+}
+.inf-av>.avatar{
+    margin:auto;
+    margin-bottom: 25px;
+}
+.bimg-4{
+    background: url(../images/flat-lay-desk-dark.png) 100% 100% no-repeat;
+    height: 239px;
+    background-size: cover;
     width: 100%;
-    height:500;
-    background: url('pytyga/all-media/flat-lay-business-agenda-1.png');
-}
-.offer{
-    display: flex;
-    flex-flow: column nowrap;
-}
-.advertising{
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: 100%;
-    margin:0 20px;
-    justify-content: space-between;
-}
-.advertising .adv-el{
-    flex-basis: 25%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    
-}
-.offer>h1 {
-    margin: 85px 0;
-    display: flex;
-    justify-content: center;
-
-}
-.adv-el img{
-    height: 165px;
-    width: 165px;
-}
-.adv-el p{
-    color: black;
-    font-size: 25px;
 }
 
 /*----*Registration error styles----*/
@@ -137,3 +162,9 @@ a{
     color: red;
 }
 /*---------------------------------*/
+
+@media screen and (max-width: 991px){
+    .bimg-2{
+        display: none;
+    }
+}
