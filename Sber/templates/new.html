@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Расписание{% endblock %}
+
+{% block content %}
+    {% autoescape off %}
+
+    <div class="container">{{ data }}</div>
+    {% endautoescape %}
+
+
+{% endblock %}
