@@ -159,6 +159,50 @@ body{
     width: 100%;
     padding: 15%;
 }
+.bimg-6{
+    background: url(../images/workplace-business-laptop.png) 100% 100% no-repeat;
+    height: 756px;
+    background-size: cover;
+    width: 100%;
+}
+.offer{
+    display: flex;
+    flex-flow: column nowrap;
+    height: 756px;
+}
+.advertising{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 100%;
+    margin:0 0px;
+    padding: 0 140px;
+    justify-content: space-between;
+}
+.advertising .adv-el{
+    flex-basis: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    
+}
+.offer>h1 {
+    margin: 65px 0;
+    display: flex;
+    justify-content: center;
+    text-transform: none;
+    color: #0B0B0B;
+}
+.adv-el img{
+    height: 90px;
+    width: 90px;
+}
+.adv-el p{
+    color: #0B0B0B;
+    font-size: 20px;
+    text-align: center;
+    width: 80%;
+}
 .table{
     background-color: #fff;
     opacity: 0.4;
@@ -177,5 +221,11 @@ body{
 @media screen and (max-width: 991px){
     .bimg-2{
         display: none;
+    }
+    .bimg-6{
+        display: none;
+    }
+    .adv-el{
+        margin-right: 80px;
     }
 }
