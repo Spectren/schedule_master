@@ -12,7 +12,7 @@ def shedule_views(request):
         print(myfile)
         file_name = default_storage.save(myfile.name, myfile)
         SA = SchedulerAlgorithm(f"{settings.MEDIA_ROOT}/{myfile.name}")
-        lessons_table = SA.create_schedule(random=True)
+        lessons_table = SA.create_schedule()
         names = {0: "Газизова Зубаржат",
                  1: "Гончарова Ирина",
                  2: "Каракачан Евгения",
@@ -34,7 +34,7 @@ def shedule_views(request):
         for i in range(17):
             lessons_table.loc[lessons_table['Teacher'] == i, 'Teacher'] = names[i]
 
-        lessons_table = lessons_table.sample(frac=1)
+        #lessons_table = lessons_table.sample(frac=1)
         return render(request, 'new.html', {
             "data": lessons_table.to_html(index=False, classes='table table-striped', justify='center'),
         })
