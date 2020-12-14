@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %} 
 
+
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
@@ -15,7 +16,6 @@
                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Специализация
                     </a>
-                  
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                       <a class="dropdown-item" href="#">Action</a>
                       <a class="dropdown-item" href="#">Another action</a>
@@ -28,11 +28,11 @@
             <div class="inf">
                 <h3>Учетные данные</h3>
                 <p class="str">ФИО</p>
-                <p class="main-str">Фамилия Имя Отчество</p>
+                <p class="main-str">{{user.first_name}} {{user.last_name}} {{user.patronymic}}</p>
                 <p class="str">Дата рождения</p>
                 <p class="main-str">dd-mm-yy</p>
                 <p class="str">Электронная почта</p>
-                <p class="main-str">name@mail.com</p>
+                <p class="main-str">{{user.email}}</p>
                 <p class="str">Пол</p>
                 <p class="main-str">Мужской\Женский</p>
                 <p class="str">Телефон</p>
