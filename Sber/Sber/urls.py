@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^auth/', include('django_registration.backends.activation.urls')),
     url(r'^auth/', include('django.contrib.auth.urls')),
     re_path(r'^profile/$', Profile.views.profile_view),
+    re_path(r'^progile_change/$', Profile.views.profile_change_view, name='profile_change'),
     re_path(r'^shedule/$', shedule_views),
     re_path(r'^$', home_page_views)
 ]
