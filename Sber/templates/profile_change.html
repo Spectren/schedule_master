@@ -4,70 +4,160 @@
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
-<div class="container inform">
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="inf-av">
-                <div class="avatar"></div>
-                <p class="main-str">{{user.username}}</p>
+
+<!--<div class='d-flex flex-row'>
+    <div class='d-flex flex-column w-25' style="background-color: #112034;">
+        <div class='d-flex flex-row border border-dark py-3 pl-3'>
+            <div class='d-inline-flex'>
+                <img src="{{ user.avatar.url }}" class="rounded-circle p-2 float-right" width="100" height="100">
+            </div>
+            <div class='d-inline-flex flex-column justify-content-center pl-3'>
+                <p class='m-0 font-weight-bolder' style="color: aliceblue;">{{user.username}}</p>
+                <p class='m-0' style="color: aliceblue;">{{user.email}}</p>
             </div>
         </div>
-        <!--div.col-9>-->
+        <div class='nav flex-column nav-pill' id="menu">
+            <a class="nav-link active" id="menu-home-tab" data-toggle="pill" href="#ProfileID">
+                <div class='d-inline-flex fas fa-home p-2 rounded-circle' style="background-color:#6969df; color:white"></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Домашняя страница</p>
+                </div>
+            </a>
+            <a class="nav-link" id="menu-teams-tab" data-toggle="pill" href="#ScheduleID">
+                <div class='d-inline-flex fas fa-calendar p-2 rounded-circle' style="background-color:#22b07d; color:white"></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Расписание</p>
+                </div>
+            </a>
+            <a class="nav-link" id="menu-teams-tab" data-toggle="pill" href="#SettingsID">
+                <div class='d-inline-flex fas fa-wrench'></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Настройки</p>
+                </div>
+            </a>
+            <a class="nav-link" id="menu-teams-tab" data-toggle="pill" href="#HelpID">
+                <div class='d-inline-flex fas fa-question'></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Помощь</p>
+                </div>
+            </a>
+            <a class="nav-link" href="/huy/">
+                <div class='d-inline-flex fas fa-sign-out-alt'></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Выйти</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class='tab-content'>
+        <div class='tab-pane fade show active' id='ProfileID'>
+            <div class='d-flex flex-column w-25'>
+                <p>HUY</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
 
-
-
-        <div class="col-lg-4">
-            <div class="inf">
-                <h3>Учетные данные</h3>
-                <form method="post" class="needs-validation" novalidate>
-                    {% csrf_token %}
-                    <div class='form-group mb-3'>
-                        <p class="str">Имя</p>
-                        <input type="text" class="form-control" name="first_name" placeholder="Имя" required>
-                        {{ form.username.error }}
-                        <p class="str">Фамилия</p>
-                        <div class='form-group mb-3'>
-                            <input type="text" class="form-control" name="last_name" placeholder="Фамилия" required>
-                            {{ form.last_name.errors }}
-                        </div>
-                        <p class="str">Дата рождения</p>
-                        <div class='form-group mb-3'>
-                            <input type="date" class="form-control" name="date" placeholder="Возраст" required>
-                            {{ form.last_name.errors }}
-                        </div>
-                            <p class="str">Электронная почта</p>
-                        <div class='form-group mb-3'>
-                            <input type="email" class="form-control" name="email" placeholder="Почта" required>
-                            {{ form.email.errors }}
-                        </div>
-                        <p class="str">Пол</p>
-                        <input type="checkbox" class='form-check-input' value='' id="inputRemember">
-                        <label class="form-check-label ml-2 mr-2" for="inputRemember">Мужской</label>
-                        <input type="checkbox" class='form-check-input' value='' id="inputRemember">
-                        <label class="form-check-label ml-2" for="inputRemember">Женский</label>
-                            <p class="str mt-2">Телефон</p>
-                            <div class='form-group mb-3'>
-                                <input type="tel" class="form-control" name="tel" placeholder="Телефон" required>
-                                {{ form.email.errors }}
-                            </div>
-                            <p class="str">Город</p>
-                            <div class='form-group mb-3'>
-                        <input type="text" class="form-control" name="city" placeholder="Город" required>
-                        {{ form.email.errors }}
-                        </div>
-                        <button class="btn btn-secondary" type="submit">Сохранить</button>
-                    </div>
-                </form> 
             </div>
         </div>
-        <div class="col-lg-5">
-            <div class="inf">
-                <h3>Настройки отображения</h3>
-                <p class="main-str">Фамилия Имя</p>
-                <a href="/profile" class="str">Изменить данные</a>
+        <div class='tab-pane fade' id='ScheduleID'>
+            <div class='d-flex flex-column w-25'>
+                <p>PIZDA</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
+
+            </div>
+        </div>
+        <div class='tab-pane fade' id='SettingsID'>
+            <div class='d-flex flex-column w-25'>
+                <p>MANDA</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
+
+            </div>
+        </div>
+        <div class='tab-pane fade' id='HelpID'>
+            <div class='d-flex flex-column w-25'>
+                <p>SKOVORODA</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
+
             </div>
         </div>
     </div>
+</div>-->
+
+<div class="container">
+    <div class="row mt-5 mb-5">
+        <div class="col-3 text-center">
+            <img src="{{ user.avatar.url }}" class="rounded-circle z-depth-0 w-75 h-75" alt="avatar image">
+            <p class="text-center mt-2">{{user.username}}</p>
+        </div>
+        <div class="col-9">
+            <form method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <div class='form-group'>
+                            <label for='first_name'>Имя</label>
+                            <input type='text' class='form-control' id="first_name" name="first_name" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class='form-group'>
+                            <label for='last_name'>Фамилия</label>
+                            <input type='text' class='form-control' id="last_name" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class='form-group'>
+                            <label for='patronymic'>Отчество</label>
+                            <input type='text' class='form-control' id="patronymic" name="patronymic" required>
+                        </div>
+                    </div>
+                </div>
+                <div class='row mb-3'>
+                    <div class='col-5'>
+                        <div class='form-group'>
+                            <label for='email'>Почта</label>
+                            <input type='email' class='form-control' id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class='col-4'>
+                        <div class='form-group'>
+                            <label for='birthday'>Дата рождения</label>
+                            <input type='date' class='form-control' id="birthday" name="birthday">
+                        </div>
+                    </div>
+                </div>
+                <div class='row mb-3'>
+                    <div class='col-5'>
+                        <div class="form-group">
+                            <label for='phone'>Номер телефона</label>
+                            <input type="tel" class="form-control" name="tel">
+                        </div>
+                    </div>
+                    <div class='col-4'>
+                        <div class="form-group">
+                            <label for='city'>Город</label>
+                            <input type="text" class="form-control" name="city">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <legend>Пол</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sex" id="Male" value="Male">
+                        <label class="form-check-label" for="Male">Мужской</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sex" id="Female" value="Female">
+                        <label class="form-check-label" for="Female">Женский</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-secondary" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-<div class="bimg-4"></div>
 {% endblock %}

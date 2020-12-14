@@ -3,7 +3,6 @@ body{
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
-    text-transform: capitalize;
     background-color:#E0DCDC;
 }
 .navbar{
@@ -37,6 +36,13 @@ body{
     text-transform: initial;
     font-weight: 400;
 }
+
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+
 .bimg{
     background: url(../images/dark-workplace-office.png) 100% 100% no-repeat;
     background-size: cover;
@@ -167,7 +173,6 @@ body{
     margin: 65px 0;
     display: flex;
     justify-content: center;
-    text-transform: none;
     color: #0B0B0B;
 }
 .adv-el img{

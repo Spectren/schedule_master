@@ -8,6 +8,8 @@ from django_registration.forms import RegistrationForm
 from HomePage.views import home_page_views
 from Shedule.views import shedule_views
 from .forms import RegisterForm
+from django.conf import settings
+from django.conf.urls.static import static
 
 import Profile.views
 
@@ -22,4 +24,4 @@ urlpatterns = [
     re_path(r'^progile_change/$', Profile.views.profile_change_view, name='profile_change'),
     re_path(r'^shedule/$', shedule_views),
     re_path(r'^$', home_page_views)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
