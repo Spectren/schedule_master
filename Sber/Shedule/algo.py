@@ -2,6 +2,8 @@ import pandas as pd
 from random import choice
 import numpy as np
 from collections import defaultdict
+from operator import itemgetter
+from json import dumps
 
 # tmp_table = pd.read_excel("./Таблица с переменными и данными.xlsx", sheet_name='Таблица с занятиями')
 #
@@ -141,6 +143,120 @@ class SchedulerAlgorithm:
 
         ret = pd.DataFrame(pandas_source, columns=['Teacher', 'Lesson', 'Spec', 'Date'])
         return ret
+
+    def create_schedule2(self):
+        ret = []
+        for lesson in self.np_lesson_table:
+            lesson_id = lesson[0]  # Id занятия
+            lesson_specialization = lesson[1]  # Специализация занятия
+            lesson_duration_days = lesson[2]  # Длительность занятия в днях
+            lesson_duration_hours = lesson[3]  # Длительность занятия в часах
+            number_of_trainers = lesson[4]  # Количество тренеров, которые будут проводить занятие
+            lesson_title = lesson[5] # Название урока и доп инфа
+
+            suitable_teachers = self.teachers_table[
+                self.teachers_table['trainer_specialization'].str.contains(lesson_specialization)]
+            suitable_teacher_id = []  # Id тренера или тренеров, которым назначено занятие
+            lesson_date_time = []  # Дата или даты (если урок идёт несколько дней) проведения уроков
+
+            if number_of_trainers == 1:
+                suitable_teacher_id.append(suitable_teachers['teachers_load'].idxmin())
+
+                suitable_time = self.teachers_table.iloc[suitable_teacher_id[0]]['lesson_start']
+                h = suitable_time.hour
+                m = suitable_time.minute
+
+                for part_of_the_lesson in range(lesson_duration_days):
+                    lesson_date = self.teacher_id_to_workdays[suitable_teacher_id[0]].pop(0)
+                    lesson_date = lesson_date.replace(hour=h, minute=m)
+                    lesson_date_time.append(lesson_date)
+                    self.teachers_table.at[
+                        suitable_teacher_id[0], 'teachers_load'] += lesson_duration_hours / lesson_duration_days
+
+                    # return
+                    ret.append([suitable_teacher_id[0], lesson_id, lesson_specialization, lesson_date, lesson_title,
+                                self.teachers_table.at[suitable_teacher_id[0], 'trainer_name']])
+
+            elif number_of_trainers > 1:
+                suitable_teacher_id = suitable_teachers.nsmallest(number_of_trainers, 'teachers_load').index
+                each_teacher_workdays = []
+
+                for st_id in suitable_teacher_id:
+                    each_teacher_workdays.append(set(self.teacher_id_to_workdays[st_id]))
+
+                workdays_intersection = each_teacher_workdays[0]
+
+                for i in range(1, len(each_teacher_workdays)):
+                    workdays_intersection = workdays_intersection.intersection(each_teacher_workdays[i])
+
+                suitable_time = max(suitable_teachers.loc[suitable_teacher_id, 'lesson_start'])
+                h = suitable_time.hour
+                m = suitable_time.minute
+
+                for part_of_the_lesson in range(lesson_duration_days):
+                    selected_lesson_workday = min(workdays_intersection)
+                    lesson_date = selected_lesson_workday.replace(hour=h, minute=m)
+                    lesson_date_time.append(lesson_date)
+                    workdays_intersection.remove(selected_lesson_workday)
+
+                    for st_id in suitable_teacher_id:
+                        self.teacher_id_to_workdays[st_id].remove(selected_lesson_workday)
+                        self.teachers_table.at[st_id, 'teachers_load'] += lesson_duration_hours / lesson_duration_days
+
+                        # return
+                        ret.append([st_id, lesson_id, lesson_specialization, lesson_date, lesson_title,
+                                    self.teachers_table.at[st_id, 'trainer_name']])
+
+            else:
+                print('Количество учителей не может быть меньше 1')
+                break
+
+            print('Учителю/лям с id =', *suitable_teacher_id, 'назначено занятие с id =', lesson_id,
+                  'и специализацией', lesson_specialization, 'на', *list(map(str, lesson_date_time)))
+
+        json_ret = {'teachers': []}
+        prev_r = None
+        i = -1
+        for r in sorted(ret, key=itemgetter(0, 3)):
+            if r[0] != prev_r:
+                i += 1
+                prev_r = r[0]
+                json_ret["teachers"].append(
+                    {
+                        "teacher_id": r[0],
+                        "teacher_name": r[4],
+                        # "specializations": "wot, csgo",
+                        # "trainer_vacation": null,
+                        # "lesson_start": "10:00:00",
+                        # "load": 108,
+                        "lessons": [
+                            {
+                                "lesson_id": r[1],
+                                "lesson_datetime": r[3],
+                                "lesson_specialization": r[2],
+                                "lesson_title": r[5]
+                            }
+                        ]
+                    }
+                )
+
+            elif r[0] == prev_r:
+                json_ret["teachers"][i]["lessons"].append(
+                    {
+                        "lesson_id": r[1],
+                        "lesson_datetime": r[3],
+                        "lesson_specialization": r[2],
+                        "lesson_title": r[5]
+                    }
+                )
+
+        # def np_encoder(object):
+        #     if isinstance(object, np.generic):
+        #         return object.item()
+
+        # ret_string = json.dumps(json_ret, default=np_encoder)
+
+        return json_ret
 
 
 if __name__ == '__main__':
