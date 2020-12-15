@@ -5,12 +5,6 @@ body{
     font-size: 20px;
     background-color:#E0DCDC;
 }
-.navbar{
-    background-color:none;
-}
-.nav-link{
-    color: #747474 !important;
-}
 .navbar-toggler,
 .navbar-toggler:active,
 .navbar-toggler:focus{
@@ -18,33 +12,8 @@ body{
     outline: none !important;
     box-shadow: none;
 }
-.start{
-    margin-top: 60px;
-    padding:120px 7%;
-}
-.start-main{
-    width: 80%;
-    text-align: left;
-}
-.start-main h1{
-    font-size: 70px;
-    text-transform: initial;
-}
-.start-main h2{
-    font-size:30px;
-    text-align: center;
-    text-transform: initial;
-    font-weight: 400;
-}
-
-
-.card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
-  }
-
 .bimg{
-    background: url(../images/dark-workplace-office.png) 100% 100% no-repeat;
+    background: url(../images/top-view-desk-dark-concept.png) 100% 100% no-repeat;
     background-size: cover;
     width: 100%;
     height: 239px;
@@ -63,8 +32,7 @@ body{
     background-size: cover;
     width: 100%;
     height: 756px;
-}
-.bimg-3{
+}.bimg-3{
     background-color: #0B0B0B;
     height: 756px;
     display: flex;
@@ -73,65 +41,26 @@ body{
     flex-direction: column;
 }
 .bimg-3 h2{
-   text-align: left;
-   color:#fff;
-    width: 35%;
-    font-size: 40px;
-    line-height: 46px;
-    font-style: normal;
-    text-decoration: underline;
-    text-transform: none;
-}
-.bimg-3 p{
+    text-align: left;
     color:#fff;
-    width: 35%;
-    font-size: 40px;
-    line-height: 46px;
-    font-style: normal;
-    text-transform: none;
-}
-.dropdown-menu h2{
-    font-size: 12px;
-}
-.dropdown-item:active{
-    background-color: #E0DCDC;
-}
-.dropdown-menu .btn{
-    background-color: #747474;
-    border: none;
-}
-.modal-footer a{
-    text-decoration: none;
-    color: black;
-}
-.btn,
-.btn:active,
-.btn:focus{
-    border: 0;
-    outline: none !important;
-    box-shadow: none;
-}
-.modal-window{
-    display: flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.avatar{
-    border-radius: 1000px;
-    background-color:#9A9A9A;
-    height: 200px;
-    width: 200px;
-}
-.inform{
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-
-.bimg-4{
+     width: 35%;
+     font-size: 40px;
+     line-height: 46px;
+     font-style: normal;
+     text-decoration: underline;
+     text-transform: none;
+ }
+ .bimg-3 p{
+     color:#fff;
+     width: 35%;
+     font-size: 40px;
+     line-height: 46px;
+     font-style: normal;
+     text-transform: none;
+ }
+ .bimg-4{
     background: url(../images/flat-lay-desk-dark.png) 100% 100% no-repeat;
-    height: 239px;
+    height: 15%;
     background-size: cover;
     width: 100%;
 }
@@ -147,67 +76,4 @@ body{
     height: 756px;
     background-size: cover;
     width: 100%;
-}
-.offer{
-    display: flex;
-    flex-flow: column nowrap;
-    height: 756px;
-}
-.advertising{
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: 100%;
-    margin:0 0px;
-    padding: 0 140px;
-    justify-content: space-between;
-}
-.advertising .adv-el{
-    flex-basis: 25%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    
-}
-.offer>h1 {
-    margin: 65px 0;
-    display: flex;
-    justify-content: center;
-    color: #0B0B0B;
-}
-.adv-el img{
-    height: 90px;
-    width: 90px;
-}
-.adv-el p{
-    color: #0B0B0B;
-    font-size: 20px;
-    text-align: center;
-    width: 80%;
-}
-.table{
-    background-color: #fff;
-    opacity: 0.4;
-}
-
-/*----*Registration error styles----*/
-.errorlist {
-    list-style-type: none;
-    padding: 0
-}
-.errorlist {
-    color: red;
-}
-/*---------------------------------*/
-
-@media screen and (max-width: 991px){
-    .bimg-2{
-        display: none;
-    }
-    .bimg-6{
-        display: none;
-    }
-    .adv-el{
-        margin-right: 80px;
-    }
 }

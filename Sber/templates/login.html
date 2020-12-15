@@ -5,9 +5,9 @@
 
 {% block content %}
 <div class='container'>
-    <div class='row justify-content-center align-items-center h-100'>
-        <div class='col-12 сol-sm-8 col-md-6 col-lg-5 col-xl-4 text-center'>
-            <div class='card'>
+    <div class='row mb-4 justify-content-center align-items-center h-100 mr-2 ml-2'>
+        <div class='col-12 сol-sm-8 col-md-6 col-lg-5 col-xl-4 text-center mt-3'>
+            <div class='card' style="background-color: hsl(0, 6%, 76%);">
                 <div class='card-body'>
                     <h2 class='card-title text-center d-none d-sm-none d-md-block'>Вход</h2>
                     <h3 class='card-title text-center d-block d-sm-block d-md-none'>Вход</h3>
@@ -17,20 +17,23 @@
                         <div class='form-group mb-3'>
                             <input type="text" class="form-control" name="username" placeholder="Логин" required>
                         </div>
-                        <div class='form-group mb-1'>
+                        <div class='form-group mb-3'>
                             <input type="password" class='form-control' name='password' placeholder='Пароль' required>
                         </div>
-                        <a href='changepass.html' class='d-flex align-items-start mb-2'>Изменить пароль</a>
-                        <div class='form-check mb-3 d-flex align-items-start'>
-                            <input type="checkbox" class='form-check-input' value='' id="inputRemember">
-                            <label class="form-check-label" for="inputRemember">Запомнить меня</label>
+                        <a href='changepass.html' class='d-flex justify-content-center mb-2' style="text-decoration: none; color: black;">Изменить пароль</a>
+                        <div class='form-check mb-3 d-flex justify-content-center'>
+                            <input type="checkbox" class='form-check-input mr-2' value='true' id="inputRemember">
+                            <label class="form-check-label" for="inputRemember" style="color: black;">Запомнить меня</label>
                         </div>
-                        <button type='submit' class="btn btn-secondary w-75">Войти</button>
+                        <button type='submit' class="btn btn-secondary w-75 mb-3">Войти</button>
                     </form>
-                    <a href="/auth/register/">Создать учетную запись</a>
+                    <a href="/auth/register/" style="text-decoration: none; color: black;">Создать учетную запись</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<footer>
+    <div class="bimg-4 fixed-bottom"></div>
+</footer>
 {% endblock %}
