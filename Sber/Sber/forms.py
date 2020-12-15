@@ -1,11 +1,9 @@
 import django.forms as forms
+from django.forms import TextInput
 from django_registration.forms import RegistrationForm
-from Profile.models import Mentors
+from django.contrib.auth.models import User
+from Profile.models import MentorData
 
 class RegisterForm(RegistrationForm):
     class Meta(RegistrationForm.Meta):
-        model = Mentors
-        fields = ['username', 'email', 'first_name', 'last_name', 'patronymic', 'password1']
-        labels = {
-            "password1": "Пароль"
-        }
+        model = User

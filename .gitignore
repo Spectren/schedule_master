@@ -4,3 +4,4 @@ __pycache__
 /emails
 *.pyc
 Sber/media/
+Sber/emails/

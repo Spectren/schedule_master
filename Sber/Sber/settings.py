@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'HomePage',
     'Profile',
 
+    'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -91,7 +92,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'Profile.Mentors'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
