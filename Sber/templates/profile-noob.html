@@ -29,11 +29,18 @@
                 {% endif %}
                 <p class="pb-2" style='color: #9A9A9A'>Телефон</p>
                 <p class="pb-3">{{ user.profile.telephone}}</p>
+                <p class="pb-2" style='color: #9A9A9A'>Специализация</p>
+                <p class="pb-3">{{ user.profile.telephone}}</p>
+                <p class="pb-2" style='color: #9A9A9A'>Отпуск</p>
+                <p class="pb-3">{{ user.profile.telephone}}</p>
+                <p class="pb-2" style='color: #9A9A9A'>Количество часов загрузки</p>
+                <p class="pb-3">{{ user.profile.telephone}}</p>
             </div>
         </div>
         <div class="col-lg-4">
             <a href="{% url 'profile_change' %}"class="d-flex justify-content-center mb-5 mt-5" style="text-decoration: none; color: black;">Изменить данные</a>
-            <a href="#"class="d-flex justify-content-center mb-5 ml-2" style="text-decoration: none; color: black;">Изменение группы</a>
+            <a href="#"class="d-flex justify-content-center mb-5 ml-2" style="text-decoration: none; color: black;">Указать даты отпуска</a>
+            <a href="#"class="d-flex justify-content-center mb-5 ml-2" style="text-decoration: none; color: black;">Указать часы загрузки</a>
         </div>
     </div>
 </div>

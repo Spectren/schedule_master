@@ -32,7 +32,8 @@ body{
     background-size: cover;
     width: 100%;
     height: 756px;
-}.bimg-3{
+}
+.bimg-3{
     background-color: #0B0B0B;
     height: 756px;
     display: flex;
@@ -55,6 +56,32 @@ body{
      width: 35%;
      font-size: 40px;
      line-height: 46px;
+     font-style: normal;
+     text-transform: none;
+ }
+ .bimg-3-1{
+    background-color: #0B0B0B;
+    height: 556px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.bimg-3-1 h2{
+    text-align: left;
+    color:#fff;
+     width: 35%;
+     font-size: 20px;
+     line-height: 23px;
+     font-style: normal;
+     text-decoration: underline;
+     text-transform: none;
+ }
+ .bimg-3-1 p{
+     color:#fff;
+     width: 35%;
+     font-size: 20px;
+     line-height: 23px;
      font-style: normal;
      text-transform: none;
  }
