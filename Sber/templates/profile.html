@@ -16,11 +16,11 @@
             <div class="inf pl-5">
                 <h3 class='pb-4'>Учетные данные</h3>
                 <p class="pb-2" style='color: #9A9A9A'>ФИО</p>
-                <p class="pb-3">{{user.first_name}} {{user.last_name}} {{user.profile.patronymic}}</p>
+                <p class="pb-3">{{ user.first_name }} {{ user.last_name }} {{ user.profile.patronymic }}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Дата рождения</p>
-                <p class="pb-3">{{ user.profile.birthday }}</p>
+                <p class="pb-3">{{ user.profile.date_check }}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Электронная почта</p>
-                <p class="pb-3">{{user.email}}</p>
+                <p class="pb-3">{{ user.email }}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Пол</p>
                 {% if user.profile.sex %}
                     <p class="pb-3">Женский</p>
@@ -33,5 +33,14 @@
         </div>
     </div>
     <a href="{% url 'profile_change' %}">HUY</a>
+    <div class='row'>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <button class="btn btn-secondary" type="submit">Generate</button>
+                <p>huy</p>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
