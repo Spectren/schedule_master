@@ -15,7 +15,7 @@ def profile_view(request):
 def profile_change_view(request):
     if request.method == "POST":
         user_form = EditUserForm(data=request.POST, instance=request.user)
-        mentor_form = EditMentorForm(data=request.POST, instance=request.user.profile)
+        mentor_form = EditMentorForm(data=request.POST, files=request.FILES, instance=request.user.profile)
 
         if user_form.is_valid() and mentor_form.is_valid():
             user_form.save()
@@ -41,7 +41,7 @@ class SberRegistrationView(RegistrationView):
         profile_data = MentorData(**{
             field: value
             for field, value in form.cleaned_data.items()
-            if field not in {'username', 'password1', 'password2', 'email'}
+            if field not in {'username', 'password1', 'password2', 'email', 'first_name', 'last_name'}
         })
 
         profile_data.owner = user

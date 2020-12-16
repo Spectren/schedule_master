@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'HomePage',
     'Profile',
 
+    'phonenumber_field',
     'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -73,6 +74,8 @@ DATABASES = {
     }
 }
 
+PHONENUMBER_DB_FORMAT = "NATIONAL"
+PHONENUMBER_DEFAULT_REGION = "RU"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
