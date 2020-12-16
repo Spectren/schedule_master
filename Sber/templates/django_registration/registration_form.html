@@ -15,7 +15,7 @@
                 <div class='card-body'>
                     <h2 class='card-title text-center d-none d-sm-none d-md-block'>Регистрация</h2>
                     <h3 class='card-title text-center d-block d-sm-block d-md-none'>Регистрация</h3>
-                    <form method="post" action="/auth/register/" class="needs-validation" novalidate>
+                    <form method="post" class="needs-validation" novalidate>
                         {% csrf_token %}
                         <div class='form-group mb-3'>
                             <input type="text" class="form-control" name="username" placeholder="Логин" required>
@@ -45,6 +45,10 @@
                             <input type='password' placeholder="Повторите пароль" name="password2" class='form-control'>
                             {{ form.password2.errors }}
                         </div>
+
+                        {% if form.team %}
+                        {{ form.team }}
+                        {% endif %}
                         <button type='submit' class="btn btn-secondary w-75">Зарегистрироваться</button>
                     </form>
                 </div>

@@ -1,17 +1,19 @@
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.conf.urls import url
-from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
 from HomePage.views import home_page_views
 from Shedule.views import shedule_views
-from .forms import RegisterForm
 from django.conf import settings
 from django.conf.urls.static import static
 
 import Profile.views
 
+from Profile.views import generate_team, TrainerRegistrationView
+
 urlpatterns = [
+    path('profile/create-team/', generate_team, name='generate-team-api'),
+    path('auth/register/train-ref/<int:team_pk>/', TrainerRegistrationView.as_view(), name='team-ref'),
     re_path(r'^auth/register/$', Profile.views.SberRegistrationView.as_view(), name='django_registration_register'),
     path('admin/', admin.site.urls),
     re_path(r'^auth/login/$', LoginView.as_view(template_name='login.html')),
