@@ -5,51 +5,58 @@
 
 {% block title %}
 Регистрация
-{% endblock %} 
+{% endblock %}
 
 {% block content %}
 <div class='container'>
-    <div class='row justify-content-center h-100'>
+    <div class='row justify-content-center h-100 mb-5'>
         <div class='col-12 сol-sm-8 col-md-6 col-lg-4 text-center'>
-            <div class='card'>
+            <div class='card' style="background-color: hsl(0, 6%, 76%);">
                 <div class='card-body'>
                     <h2 class='card-title text-center d-none d-sm-none d-md-block'>Регистрация</h2>
                     <h3 class='card-title text-center d-block d-sm-block d-md-none'>Регистрация</h3>
-                    <form method="post" action="/auth/register/" class="needs-validation" novalidate>
+                    <form class="needs-validation" method="post" novalidate>
                         {% csrf_token %}
                         <div class='form-group mb-3'>
-                            <input type="text" class="form-control" name="username" placeholder="Логин" required>
+                            <input class="form-control" name="username" placeholder="Логин" required type="text">
                             {{ form.username.errors }}
                         </div>
                         <div class='form-group mb-3'>
-                            <input type="text" class="form-control" name="first_name" placeholder="Имя" required>
+                            <input class="form-control" name="first_name" placeholder="Имя" required type="text">
                             {{ form.first_name.errors }}
                         </div>
                         <div class='form-group mb-3'>
-                            <input type="text" class="form-control" name="last_name" placeholder="Фамилия" required>
+                            <input class="form-control" name="last_name" placeholder="Фамилия" required type="text">
                             {{ form.last_name.errors }}
                         </div>
                         <div class='form-group mb-3'>
-                            <input type="text" class="form-control" name="patronymic" placeholder="Отчество" required>
-                            
+                            <input class="form-control" name="patronymic" placeholder="Отчество" required type="text">
+                            {{ form.patronymic.errors }}
                         </div>
                         <div class='form-group mb-3'>
-                            <input type="email" class="form-control" name="email" placeholder="Почта" required>
+                            <input class="form-control" name="email" placeholder="Почта" required type="email">
                             {{ form.email.errors }}
                         </div>
                         <div class='form-group mb-3'>
-                            <input type='password' placeholder="Введите пароль" name="password1" class='form-control'>
+                            <input class='form-control' name="password1" placeholder="Введите пароль" type='password'>
                             {{ form.password1.errors }}
                         </div>
                         <div class='form-group mb-3'>
-                            <input type='password' placeholder="Повторите пароль" name="password2" class='form-control'>
+                            <input class='form-control' name="password2" placeholder="Повторите пароль" type='password'>
                             {{ form.password2.errors }}
                         </div>
-                        <button type='submit' class="btn btn-secondary w-75">Зарегистрироваться</button>
+
+                        {% if form.team %}
+                        {{ form.team }}
+                        {% endif %}
+                        <button class="btn btn-secondary w-75" type='submit'>Зарегистрироваться</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<footer>
+    <div class="bimg-4"></div>
+</footer>
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% load static %} 
+{% load static %}
 {% load bootstrap4 %}
 
 {% block title %}Профиль{% endblock %}
 
 {% block content %}
 
-<!--<div class='d-flex flex-row'>
+<!-- <div class='d-flex flex-row'>
     <div class='d-flex flex-column w-25' style="background-color: #112034;">
         <div class='d-flex flex-row border border-dark py-3 pl-3'>
             <div class='d-inline-flex'>
@@ -43,7 +43,7 @@
                     <p style="color: aliceblue;">Помощь</p>
                 </div>
             </a>
-            <a class="nav-link" href="/huy/">
+            <a class="nav-link" href="/profile/">
                 <div class='d-inline-flex fas fa-sign-out-alt'></div>
                 <div class='d-inline-flex'>
                     <p style="color: aliceblue;">Выйти</p>
@@ -57,7 +57,7 @@
                 <p>HUY</p>
             </div>
             <div class='d-flex flex-column w-50'>
-                
+
             </div>
         </div>
         <div class='tab-pane fade' id='ScheduleID'>
@@ -85,18 +85,19 @@
             </div>
         </div>
     </div>
-</div>-->
+</div> -->
 
 <div class="container">
     <div class="row mt-5 mb-5">
-        <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-            {% csrf_token %}
-            <div class="col-3 text-center">
-                {% bootstrap_field mentor_form.avatar %}
-                <p class="text-center mt-2">{{user.username}}</p>
-            </div>
-            <div class="col-9">
-                <div class="row mb-3">
+        <div class="col-2 text-center mr-auto">
+            {% bootstrap_field mentor_form.avatar %}
+            <!-- 'rounded-circle z-depth-0 w-75 h-75' -->
+            <p class="text-center mt-2">{{ user.username }}</p>
+        </div>
+        <div class="col-8 ml-auto">
+            <form class="needs-validation" method="POST" novalidate>
+                {% csrf_token %}
+                <div class="row mb-5">
                     <div class="col-3">
                         {% bootstrap_field user_form.first_name %}
                     </div>
@@ -108,36 +109,55 @@
                     </div>
                 </div>
                 <div class='row mb-3'>
-                    <div class='col-4'>
+                    <div class='col-3'>
                         {% bootstrap_field mentor_form.birthday %}
                     </div>
-                </div>
-                <div class='row mb-3'>
-                    <div class='col-5'>
+                    <div class='col-3'>
                         {% bootstrap_field mentor_form.telephone %}
                     </div>
-                    <div class='col-4'>
+                    <div class='col-3'>
                         {% bootstrap_field mentor_form.city %}
                     </div>
                 </div>
-                <div class="form-group">
+                {% if trainer_form %}
+                <div class='row mb-3'>
+                    <div class='col-3'>
+                        {% bootstrap_field trainer_form.specialization %}
+                    </div>
+                    <div class='col-3'>
+                        {% bootstrap_field trainer_form.vacation_start %}
+                        {% bootstrap_field trainer_form.vacation_duration %}
+                    </div>
+                    <div class='col-3'>
+                        {% bootstrap_field trainer_form.work_hours %}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="form-group d-inline-flex w-150">
                     <legend>Пол</legend>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" value="0" {% if not form.sex %}checked{% endif %}>
+                    <div class="form-check ml-4">
+                        <input class="form-check-input" name="sex" type="radio" value="0">
                         <label class="form-check-label" for="Male">Мужской</label>
                     </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sex" value="1" {% if form.sex %}checked{% endif %}>
+                    <div class="form-check ml-2">
+                        <input class="form-check-input" name="sex" type="radio" value="1">
                         <label class="form-check-label" for="Female">Женский</label>
                     </div>
-
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-secondary" type="submit">Сохранить</button>
+                    <button class="btn btn-secondary ml-4" type="submit">Сохранить</button>
                 </div>
-            </div>
-        </form>
+                {% if user_form.errors or mentor_form.errors %}
+                {% bootstrap_alert user_form.errors alert_type='error' %}
+                {% bootstrap_alert mentor_form.errors alert_type='error' %}
+                {% endif %}
+            </form>
+        </div>
     </div>
+    <a class="d-flex justify-content-center mb-5" href="{% url 'profile-view' %}"
+       style="text-decoration: none; color: black;">Назад</a>
 </div>
+<footer>
+    <div class="bimg-4"></div>
+</footer>
 {% endblock %}

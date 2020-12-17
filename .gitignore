@@ -5,3 +5,4 @@ __pycache__
 *.pyc
 Sber/media/
 Sber/emails/
+/venv
