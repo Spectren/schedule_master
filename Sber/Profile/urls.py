@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import generate_team, profile_change_view, profile_view, team_detail
+from .views import ProfileChangeView, ProfileView, TeamDetailView, TeamGenerationView
 
 urlpatterns = [
-    path('create_team/', generate_team, name='team-create'),
-    path('team/<int:pk>/', team_detail, name='team-detail'),
-    path('change/', profile_change_view, name='profile-change'),
-    path('', profile_view, name='profile-view'),
+    path('create_team/', TeamGenerationView.as_view(), name='team-create'),
+    path('team/<int:pk>/', TeamDetailView.as_view(), name='team-detail'),
+    path('change/', ProfileChangeView.as_view(), name='profile-change'),
+    path('', ProfileView.as_view(), name='profile-view'),
 ]

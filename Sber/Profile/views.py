@@ -1,7 +1,9 @@
-from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.generic import DetailView, FormView, TemplateView
 from django_registration import signals
 from django_registration.backends.activation.views import RegistrationView
 
@@ -10,44 +12,62 @@ from .forms import EditMentorForm, EditTrainerForm, EditUserForm, MentorRegistra
 from .models import MentorData, TeamData, TrainerData
 
 
-@login_required
-def profile_view(request):
-    return render(request, 'profile.html', context={
-        'username': request.user,
-        'teams': request.user.profile.teams.all(),
-    })
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return {**context, **{
+            'user': self.request.user,
+            'teams': self.request.user.profile.teams.all(),
+        }}
 
 
-def profile_change_view(request):
-    trainer_form = None
+class ProfileChangeView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile_change.html'
 
-    if request.method == "POST":
-        user_form = EditUserForm(data=request.POST, instance=request.user)
-        mentor_form = EditMentorForm(data=request.POST, files=request.FILES, instance=request.user.profile)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-        if user_form.is_valid() and mentor_form.is_valid():
+        user = self.request.user
+
+        return {**context, **{
+            'user_form': EditUserForm(instance=user),
+            'mentor_form': EditMentorForm(instance=user.profile),
+            'trainer_form': user.profile.is_trainer and EditTrainerForm(instance=user.trainer_profile) or None,
+            'avatar': self.request.user.profile.avatar.url,
+        }}
+
+    def post(self, request, *args, **kwargs):
+        user_form = EditUserForm(request.POST, instance=request.user)
+        mentor_form = EditMentorForm(request.POST, request.FILES, instance=request.user.profile)
+        trainer_form = (
+                request.user.profile.is_trainer and
+                EditTrainerForm(request.POST, instance=request.user.trainer_profile)
+                or None
+        )
+
+        all_valid = (
+                user_form.is_valid() and
+                mentor_form.is_valid() and
+                (trainer_form is None or trainer_form.is_valid())
+        )
+
+        if all_valid:
             user_form.save()
             mentor_form.save()
-            trainer_form.save()
-
-        if request.user.profile.is_trainer:
-            trainer_form = EditTrainerForm(data=request.POST, instance=request.user.trainer_profile)
-            if trainer_form.is_valid():
-                trainer_form.save()
-
-        return HttpResponseRedirect(reverse('profile'))
-    else:
-        user_form = EditUserForm(instance=request.user)
-        mentor_form = EditMentorForm(instance=request.user.profile)
-        if request.user.profile.is_trainer:
-            trainer_form = EditTrainerForm(instance=request.user.trainer_profile)
-
-    return render(request, 'profile_change.html', context={
-        "user_form": user_form,
-        "mentor_form": mentor_form,
-        "trainer_form": trainer_form,
-        "avatar": request.user.profile.avatar.url,
-    })
+            trainer_form and trainer_form.save()
+            return HttpResponseRedirect(reverse('profile-view'))
+        else:
+            return self.render_to_response({
+                **self.get_context_data(**kwargs),
+                **{
+                    'user_form': user_form,
+                    'mentor_form': mentor_form,
+                    'trainer_form': trainer_form,
+                }
+            })
 
 
 class MentorRegistrationView(RegistrationView):
@@ -113,39 +133,36 @@ class TrainerRegistrationView(RegistrationView):
         return form
 
 
-@login_required
-def generate_team(request):
-    user = request.user
+@method_decorator(user_passes_test(lambda u: not u.profile.is_trainer), name='dispatch')
+class TeamGenerationView(LoginRequiredMixin, FormView):
+    template_name = 'generate_team.html'
+    form_class = TeamGenerationForm
 
-    if user.profile.is_trainer:
-        return HttpResponse('Вы - тренер, вы не имеете права создавать команды.')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-    if request.method == 'POST':
-        form = TeamGenerationForm(data=request.POST)
+        return {**context, **{
+            'form': TeamGenerationForm()
+        }}
 
-        if form.is_valid():
-            new_team = form.save(commit=False)
-            new_team.mentor = user.profile
-            new_team.save()
+    def form_valid(self, form):
+        new_team = form.save(commit=False)
+        new_team.mentor = self.request.user.profile
+        new_team.save()
 
-            return HttpResponseRedirect(reverse('team-detail', args=(new_team.pk,)))
-    else:
-        form = TeamGenerationForm()
-
-    return render(request, 'generate_team.html', {
-        'form': form
-    })
+        return HttpResponseRedirect(reverse('team-detail', args=(new_team.pk,)))
 
 
-@login_required
-def team_detail(request, pk):
-    user = request.user
-    team = get_object_or_404(TeamData, pk=pk)
+class TeamDetailView(LoginRequiredMixin, DetailView):
+    context_object_name = 'team'
+    template_name = 'team.html'
 
-    if not user.profile.teams.filter(pk=team.pk).exists():
-        raise Http404
+    def get_queryset(self):
+        return self.request.user.profile.teams.all()
 
-    return render(request, 'team.html', {
-        'team': team,
-        'user': user,
-    })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return {**context, **{
+            'user': self.request.user
+        }}
