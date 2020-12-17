@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Профиль{% endblock %}
+{% block title %}{{ team.team_name }}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -18,7 +18,7 @@
                 <p class="pb-2" style='color: #9A9A9A'>Ссылка для приглашения:</p>
                 <p class="pb-3"><a href="{% url 'team-ref' team.pk %}">Реферальная ссылка</a></p>
                 <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
-                <div>
+                <div class="mt-5 mb-5"> 
                     table
                 </div>
             </div>
@@ -31,13 +31,10 @@
                     {{ trainer.owner.username }}
                 </div>
                 {% empty %}
-                У вас нет членов команды
+                <p class="pb-2" style='color: #9A9A9A'>У вас нет членов команды</p>
                 {% endfor %}
             </div>
         </div>
     </div>
 </div>
-<footer>
-    <div class="bimg-4"></div>
-</footer>
 {% endblock %}

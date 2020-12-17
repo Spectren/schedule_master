@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 
+{% block title %}Создать команду{% endblock %}
+
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
     <div class='container'>
         <div class='row mb-4 justify-content-center align-items-center h-100 mr-2 ml-2 mb-5'>
             <div class='col-12 сol-sm-8 col-md-6 col-lg-5 col-xl-4 text-center mt-3'>
@@ -22,8 +22,8 @@
             </div>
         </div>
     </div>
-    <footer>
-        <div class="bimg-4"></div>
-    </footer>
-</form>
+    <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
+<footer>
+    <div class="bimg-4 fixed-bottom"></div>
+</footer>
 {% endblock %}
