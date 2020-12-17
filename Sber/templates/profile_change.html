@@ -89,15 +89,20 @@
 
 <div class="d-none d-lg-block container">
     <div class="row mt-5 mb-5">
-        <div class="col-2 text-center mr-auto">
-            {% bootstrap_field mentor_form.avatar %}
-            <!-- 'rounded-circle z-depth-0 w-75 h-75' -->
+        <!--  <div class="col-2 text-center mr-auto">
+            
+           'rounded-circle z-depth-0 w-75 h-75' 
             <p class="text-center mt-2">{{ user.username }}</p>
             <a class="d-flex justify-content-end mb-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
-        </div>
+        </div>-->
         <div class="col-8 ml-auto">
-            <form class="needs-validation" method="POST" novalidate>
+            <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
+                <div class='row mb-5 d-flex justify-content-center'>
+                    {% bootstrap_field mentor_form.avatar %}
+                    <p class="text-center mt-2">{{ user.username }}</p>
+                    <a class="d-flex justify-content-end mb-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
+                </div>
                 <div class="row mb-5 d-flex justify-content-center">
                     <div class="col-3">
                         {% bootstrap_field user_form.first_name %}
@@ -140,11 +145,11 @@
                     <div class="form-group d-inline-flex w-50">
                         <legend>Пол:</legend>
                         <div class="form-check ml-4">
-                            <input class="form-check-input" name="sex" type="radio">
+                            <input class="form-check-input" name="sex" type="radio"  value="0">
                             <label class="form-check-label" for="Male">Мужской</label>
                         </div>
                         <div class="form-check ml-2">
-                            <input class="form-check-input" name="sex" type="radio">
+                            <input class="form-check-input" name="sex" type="radio" value="1">
                             <label class="form-check-label" for="Female">Женский</label>
                         </div>
                     </div>
