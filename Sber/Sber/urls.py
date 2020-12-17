@@ -6,7 +6,7 @@ from django.urls import include, path
 
 from HomePage.views import home_page_views
 from Profile.views import MentorRegistrationView, TrainerRegistrationView
-from Schedule.views import schedule_views
+from Schedule.views import sсhedule_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,7 +17,7 @@ urlpatterns = [
     path('auth/logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('auth/', include('django_registration.backends.activation.urls')),
     path('auth/', include('django.contrib.auth.urls')),
-    path(r'schedule/', schedule_views),
+    path(r'schedule/', sсhedule_views),
     path(r'', home_page_views, name='home')
 ]
 
