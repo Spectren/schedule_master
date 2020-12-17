@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-3">
             <div class="m-auto mb-4">
                 <img class="rounded-circle z-depth-0 w-75 h-75" src="{{ user.profile.avatar.url }}">
@@ -48,14 +48,11 @@
                 {% for team in teams %}
                     <a href="{% url 'team-detail' team.pk %}" class="mt-3 d-flex flex-column align-items-start" style="text-decoration: none;  color: blue;">{{ team.team_name }}</a>
                     {% empty %}
-                    У вас нет комманд.
+                    <p class="d-flex justify-content-center pb-3 mt-4" style='color: #9A9A9A'>У вас нет комманд</p>
                 {% endfor %}
             </div>
             <a class="d-flex justify-content-center mb-5" href="{% url 'team-create' %}" style="text-decoration: none; color: black;">Добавить группу</a>
         </div>
     </div>
 </div>
-<footer>
-    <div class="bimg-4"></div>
-</footer>
-{% endblock %}                                                        
+{% endblock %}

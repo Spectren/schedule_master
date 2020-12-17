@@ -16,7 +16,7 @@
             <div class="pl-5">
                 <h3 class='pb-4'>Ваша команда: {{ team.team_name }}</h3>
                 <p class="pb-2" style='color: #9A9A9A'>Ссылка для приглашения:</p>
-                <p class="pb-3"><a href="{% url 'team-ref' team.pk %}">Реферальная ссылка</a></p>
+                <p class="pb-3" id="copytext"><a href="{% url 'team-ref' team.pk %}">{% url 'team-ref' team.pk %}</a></p>
                 <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
                 <div class="mt-5 mb-5"> 
                     table
