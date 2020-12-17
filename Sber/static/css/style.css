@@ -3,174 +3,13 @@ body{
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
-<<<<<<< HEAD
-    text-transform: capitalize;
     background-color:#E0DCDC;
 }
-.navbar{
-    background-color:none;
-}
-.nav-link{
-    color: #747474 !important;
-}
-=======
-    background-color:#E0DCDC;
-}
->>>>>>> master
 .navbar-toggler,
 .navbar-toggler:active,
 .navbar-toggler:focus{
     border: 0;
     outline: none !important;
-<<<<<<< HEAD
-    box-shadow: none;
-}
-.start{
-    margin-top: 60px;
-    padding:120px 7%;
-}
-.start-main{
-    width: 80%;
-    text-align: left;
-}
-.start-main h1{
-    font-size: 70px;
-    text-transform: initial;
-}
-.start-main h2{
-    font-size:30px;
-    text-align: center;
-    text-transform: initial;
-    font-weight: 400;
-}
-.bimg{
-    background: url(../images/dark-workplace-office.png) 100% 100% no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 239px;
-}
-.image-bg .row{
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-}
-.image-bg .row .col-lg-3,
-.image-bg .row .col-lg-9{
-    padding: 0;
-}
-.bimg-2{
-    background: url(../images/black-and-white-architecture-skyline-building-city-skyscraper-34264-pxhere\ 1.png) 100% 100% no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 756px;
-}
-.bimg-3{
-    background-color: #0B0B0B;
-    height: 756px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.bimg-3 h2{
-   text-align: left;
-   color:#fff;
-    width: 35%;
-    font-size: 40px;
-    line-height: 46px;
-    font-style: normal;
-    text-decoration: underline;
-    text-transform: none;
-}
-.bimg-3 p{
-    color:#fff;
-    width: 35%;
-    font-size: 40px;
-    line-height: 46px;
-    font-style: normal;
-    text-transform: none;
-}
-.dropdown-menu h2{
-    font-size: 12px;
-}
-.dropdown-item:active{
-    background-color: #E0DCDC;
-}
-.dropdown-menu .btn{
-    background-color: #747474;
-    border: none;
-}
-.modal-footer a{
-    text-decoration: none;
-    color: black;
-}
-.btn,
-.btn:active,
-.btn:focus{
-    border: 0;
-    outline: none !important;
-    box-shadow: none;
-}
-.modal-window{
-    display: flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.avatar{
-    border-radius: 1000px;
-    background-color:#9A9A9A;
-    height: 200px;
-    width: 200px;
-}
-.inform{
-    margin-top: 100px;
-    margin-bottom: 100px;
-}
-.inf{
-    text-transform: none;
-    padding-left: 40px;
-}
-.inf>.str{
-    color: #9A9A9A;
-    padding-bottom:10px;
-}
-.inf>.main-str{
-    color: #000;
-    padding-bottom: 25px;
-}
-.inf>h3{
-    padding-bottom: 60px;
-}
-.inf-av{
-    text-align: center;
-    padding-right: 40px;
-    margin-bottom: 50px;
-}
-.inf-av>.avatar{
-    margin:auto;
-    margin-bottom: 25px;
-}
-.bimg-4{
-    background: url(../images/flat-lay-desk-dark.png) 100% 100% no-repeat;
-    height: 239px;
-    background-size: cover;
-    width: 100%;
-}
-.bimg-5{
-    background: url(../images/top-view-workspace-with-glasses-cup-tea.png) 100% 100% no-repeat;
-    height: 100%;
-    background-size: cover;
-    width: 100%;
-    padding: 15%;
-}
-.bimg-6{
-    background: url(../images/workplace-business-laptop.png) 100% 100% no-repeat;
-    height: 756px;
-    background-size: cover;
-    width: 100%;
-=======
     box-shadow: none;
 }
 .bimg{
@@ -193,53 +32,11 @@ body{
     background-size: cover;
     width: 100%;
     height: 756px;
->>>>>>> master
 }
 .bimg-3{
     background-color: #0B0B0B;
     height: 756px;
     display: flex;
-<<<<<<< HEAD
-    flex-flow: column nowrap;
-    height: 756px;
-}
-.advertising{
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    height: 100%;
-    margin:0 0px;
-    padding: 0 140px;
-    justify-content: space-between;
-}
-.advertising .adv-el{
-    flex-basis: 25%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    
-}
-.offer>h1 {
-    margin: 65px 0;
-    display: flex;
-    justify-content: center;
-    text-transform: none;
-    color: #0B0B0B;
-}
-.adv-el img{
-    height: 90px;
-    width: 90px;
-}
-.adv-el p{
-    color: #0B0B0B;
-    font-size: 20px;
-    text-align: center;
-    width: 80%;
-}
-.table{
-    background-color: #fff;
-    opacity: 0.4;
-=======
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -290,7 +87,7 @@ body{
  }
  .bimg-4{
     background: url(../images/flat-lay-desk-dark.png) 100% 100% no-repeat;
-    height: 236px;
+    height: 165px;
     background-size: cover;
     width: 100%;
 }
@@ -306,7 +103,6 @@ body{
     height: 756px;
     background-size: cover;
     width: 100%;
->>>>>>> master
 }
 /*----*Registration error styles----*/
 .errorlist {
@@ -317,18 +113,3 @@ body{
     color: red;
 }
 /*---------------------------------*/
-<<<<<<< HEAD
-
-@media screen and (max-width: 991px){
-    .bimg-2{
-        display: none;
-    }
-    .bimg-6{
-        display: none;
-    }
-    .adv-el{
-        margin-right: 80px;
-    }
-}
-=======
->>>>>>> master
