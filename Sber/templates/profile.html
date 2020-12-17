@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 
 {% block title %}Профиль{% endblock %}
 
@@ -8,39 +8,54 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="m-auto mb-4">
-                <img src="{{ user.profile.avatar.url }}" class="rounded-circle z-depth-0 w-75 h-75">
+                <img class="rounded-circle z-depth-0 w-75 h-75" src="{{ user.profile.avatar.url }}">
             </div>
             <p class="text-center pb-3">{{user.username}}</p>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-5">
             <div class="inf pl-5">
                 <h3 class='pb-4'>Учетные данные</h3>
                 <p class="pb-2" style='color: #9A9A9A'>ФИО</p>
-                <p class="pb-3">{{ user.first_name }} {{ user.last_name }} {{ user.profile.patronymic }}</p>
+                <p class="pb-3">{{user.first_name}} {{user.last_name}} {{ user.profile.patronymic }}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Дата рождения</p>
-                <p class="pb-3">{{ user.profile.date_check }}</p>
+                <p class="pb-3">{{ user.profile.birthday | default_if_none:"Не указано" }}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Электронная почта</p>
-                <p class="pb-3">{{ user.email }}</p>
+                <p class="pb-3">{{user.email}}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Пол</p>
                 {% if user.profile.sex %}
-                    <p class="pb-3">Женский</p>
+                <p class="pb-3">Женский</p>
                 {% else %}
-                    <p class="pb-3">Мужской</p>
+                <p class="pb-3">Мужской</p>
                 {% endif %}
                 <p class="pb-2" style='color: #9A9A9A'>Телефон</p>
-                <p class="pb-3">{{ user.profile.telephone}}</p>
+                <p class="pb-3">{{ user.profile.telephone|default:"Неизвестно" }}</p>
+
+                {% if user.profile.is_trainer %}
+                <p class="pb-2" style='color: #9A9A9A'>Специализация</p>
+                <p class="pb-3">{{ user.trainer_profile.specialization | default_if_none:"Не указано" }}</p>
+                <p class="pb-2" style='color: #9A9A9A'>Отпуск</p>
+                <p class="pb-3">{{ user.trainer_profile.vacation_start | default_if_none:"Неуказанная дата" }} на {{
+                    user.trainer_data.vacation_duration | default:"неуказанное время"}}</p>
+                <p class="pb-2" style='color: #9A9A9A'>Количество часов загрузки</p>
+                <p class="pb-3">{{ user.trainer_profile.work_hours | default_if_none:"Не указано" }}</p>
+                {% endif %}
+
+                {% for team in teams %}
+                <a href="{% url 'team-detail' team.pk %}">{{ team.team_name }}</a>
+                {% empty %}
+                У вас нет комманд.
+                {% endfor %}
             </div>
         </div>
-    </div>
-    <a href="{% url 'profile_change' %}">HUY</a>
-    <div class='row'>
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <button class="btn btn-secondary" type="submit">Generate</button>
-                <p>huy</p>
-            </div>
-        </form>
+        <div class="col-lg-4">
+            <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-change' %}"
+               style="text-decoration: none; color: black;">Изменить данные</a>
+            <a class="d-flex justify-content-center mb-5 ml-2" href="#" style="text-decoration: none; color: black;">Изменение
+                группы</a>
+        </div>
     </div>
 </div>
+<footer>
+    <div class="bimg-4"></div>
+</footer>
 {% endblock %}
