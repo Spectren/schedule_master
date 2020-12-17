@@ -148,4 +148,5 @@ def team_detail(request, pk):
     return render(request, 'team.html', {
         'team': team,
         'user': user,
+        'trainers_list': team.trainers.all(),
     })
