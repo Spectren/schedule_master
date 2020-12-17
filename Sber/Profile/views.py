@@ -164,7 +164,6 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
 
         return {**context, **{
-            'team': team,
-            'user': user,
-            'trainers_list': team.trainers.all(),
+            'user': self.request.user,
+            'trainers_list': context['team'].trainers.all(),
         }}
