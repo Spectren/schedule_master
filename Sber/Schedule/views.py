@@ -22,4 +22,4 @@ def sсhedule_views(request):
         else:
             return render(request, 'new.html', {"data": lessons_table })
 
-    return render(request, 'shedule.html')
+    return render(request, 'schedule.html')
