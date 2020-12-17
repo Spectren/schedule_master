@@ -27,7 +27,7 @@ class SchedulerAlgorithm:
 
     def __init__(self, excel_file_path_name: str, planning_range):
         self.lesson_table = self.preprocess_file(excel_file_path_name)
-        self.teachers_table = pd.read_excel(r'./Shedule/таблица учителей.xlsx')
+        self.teachers_table = pd.read_excel(r'./Schedule/таблица учителей.xlsx')
         self.teachers_table['teachers_load'] = 0
         self.teacher_id_to_workdays = self.set_teacher_id_to_workdays(self.teachers_table, planning_range)
         self.np_lesson_table = np.array(self.lesson_table)
@@ -204,4 +204,3 @@ class SchedulerAlgorithm:
 if __name__ == '__main__':
     SA = SchedulerAlgorithm("./таблица занятий с несколькими учителями.xlsx")
     res = SA.create_schedule2()
-    print(res)

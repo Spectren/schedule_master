@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import default_storage
-from pprint import pprint
 from django.conf import settings
 from .algo import SchedulerAlgorithm
 
 
-def shedule_views(request):
+def sсhedule_views(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
 
@@ -21,7 +20,6 @@ def shedule_views(request):
             return render(request, 'new.html', {"data": 'Учителей нет' })
 
         else:
-            pprint(lessons_table)
             return render(request, 'new.html', {"data": lessons_table })
 
     return render(request, 'shedule.html')

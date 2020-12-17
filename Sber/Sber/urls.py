@@ -6,7 +6,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django_registration.backends.activation.views import RegistrationView
 from django_registration.forms import RegistrationForm
 from HomePage.views import home_page_views
-from Shedule.views import shedule_views
+from Schedule.views import sсhedule_views
 from .forms import RegisterForm
 
 import Profile.views
@@ -19,6 +19,6 @@ urlpatterns = [
     url(r'^auth/', include('django_registration.backends.activation.urls')),
     url(r'^auth/', include('django.contrib.auth.urls')),
     re_path(r'^profile/$', Profile.views.profile_view),
-    re_path(r'^shedule/$', shedule_views),
+    re_path(r'^shedule/$', sсhedule_views),
     re_path(r'^$', home_page_views)
 ]
