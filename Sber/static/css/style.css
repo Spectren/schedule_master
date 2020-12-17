@@ -3,6 +3,7 @@ body{
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
+<<<<<<< HEAD
     text-transform: capitalize;
     background-color:#E0DCDC;
 }
@@ -12,11 +13,16 @@ body{
 .nav-link{
     color: #747474 !important;
 }
+=======
+    background-color:#E0DCDC;
+}
+>>>>>>> master
 .navbar-toggler,
 .navbar-toggler:active,
 .navbar-toggler:focus{
     border: 0;
     outline: none !important;
+<<<<<<< HEAD
     box-shadow: none;
 }
 .start{
@@ -164,9 +170,36 @@ body{
     height: 756px;
     background-size: cover;
     width: 100%;
+=======
+    box-shadow: none;
 }
-.offer{
+.bimg{
+    background: url(../images/top-view-desk-dark-concept.png) 100% 100% no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 239px;
+}
+.image-bg .row{
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.image-bg .row .col-lg-3,
+.image-bg .row .col-lg-9{
+    padding: 0;
+}
+.bimg-2{
+    background: url(../images/black-and-white-architecture-skyline-building-city-skyscraper-34264-pxhere\ 1.png) 100% 100% no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 756px;
+>>>>>>> master
+}
+.bimg-3{
+    background-color: #0B0B0B;
+    height: 756px;
     display: flex;
+<<<<<<< HEAD
     flex-flow: column nowrap;
     height: 756px;
 }
@@ -206,8 +239,75 @@ body{
 .table{
     background-color: #fff;
     opacity: 0.4;
+=======
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-
+.bimg-3 h2{
+    text-align: left;
+    color:#fff;
+     width: 35%;
+     font-size: 40px;
+     line-height: 46px;
+     font-style: normal;
+     text-decoration: underline;
+     text-transform: none;
+ }
+ .bimg-3 p{
+     color:#fff;
+     width: 35%;
+     font-size: 40px;
+     line-height: 46px;
+     font-style: normal;
+     text-transform: none;
+ }
+ .bimg-3-1{
+    background-color: #0B0B0B;
+    height: 556px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.bimg-3-1 h2{
+    text-align: left;
+    color:#fff;
+     width: 35%;
+     font-size: 20px;
+     line-height: 23px;
+     font-style: normal;
+     text-decoration: underline;
+     text-transform: none;
+ }
+ .bimg-3-1 p{
+     color:#fff;
+     width: 35%;
+     font-size: 20px;
+     line-height: 23px;
+     font-style: normal;
+     text-transform: none;
+ }
+ .bimg-4{
+    background: url(../images/flat-lay-desk-dark.png) 100% 100% no-repeat;
+    height: 236px;
+    background-size: cover;
+    width: 100%;
+}
+.bimg-5{
+    background: url(../images/top-view-workspace-with-glasses-cup-tea.png) 100% 100% no-repeat;
+    height: 100%;
+    background-size: cover;
+    width: 100%;
+    padding: 15%;
+}
+.bimg-6{
+    background: url(../images/workplace-business-laptop.png) 100% 100% no-repeat;
+    height: 756px;
+    background-size: cover;
+    width: 100%;
+>>>>>>> master
+}
 /*----*Registration error styles----*/
 .errorlist {
     list-style-type: none;
@@ -217,6 +317,7 @@ body{
     color: red;
 }
 /*---------------------------------*/
+<<<<<<< HEAD
 
 @media screen and (max-width: 991px){
     .bimg-2{
@@ -229,3 +330,5 @@ body{
         margin-right: 80px;
     }
 }
+=======
+>>>>>>> master
