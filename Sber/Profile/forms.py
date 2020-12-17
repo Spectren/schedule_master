@@ -1,6 +1,5 @@
-from django import forms
 from django.contrib.auth.models import User
-from django.forms import CharField, DateInput, FileInput, HiddenInput, ModelForm, ModelChoiceField
+from django.forms import DateInput, FileInput, HiddenInput, ModelChoiceField, ModelForm
 from django_registration.forms import RegistrationFormUniqueEmail
 
 from .models import MentorData, TeamData, TrainerData
@@ -9,10 +8,10 @@ from .models import MentorData, TeamData, TrainerData
 class UserFormMixin(ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name']
+        exclude = ['id', 'date_joined', 'password']
 
 
-class ProfileFormMixin(ModelForm):
+class MentorFormMixin(ModelForm):
     class Meta:
         model = MentorData
         exclude = ['id']
@@ -24,11 +23,11 @@ class TrainerFormMixin(ModelForm):
         exclude = ['id']
 
 
-class MixedRegistrationTrainerForm(UserFormMixin, ProfileFormMixin, TrainerFormMixin, RegistrationFormUniqueEmail):
+class TrainerRegistrationForm(UserFormMixin, MentorFormMixin, TrainerFormMixin, RegistrationFormUniqueEmail):
     team = ModelChoiceField(queryset=TeamData.objects.all(), widget=HiddenInput())
 
 
-class MixedRegistrationForm(UserFormMixin, ProfileFormMixin, RegistrationFormUniqueEmail):
+class MentorRegistrationForm(UserFormMixin, MentorFormMixin, RegistrationFormUniqueEmail):
     pass
 
 
@@ -57,8 +56,13 @@ class EditUserForm(ModelForm):
         fields = ['first_name', 'last_name']
 
 
-class EditProfileForm(EditUserForm, EditMentorForm):
-    pass
+class EditTrainerForm(ModelForm):
+    class Meta:
+        model = TrainerData
+        exclude = ['id', 'owner', 'team']
+        widgets = {
+            "vacation_start": CustomDateInput()
+        }
 
 
 class TeamGenerationForm(ModelForm):

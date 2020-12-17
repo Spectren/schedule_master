@@ -18,8 +18,8 @@ class MentorData(models.Model):
         verbose_name_plural = 'Менторы'
 
     @property
-    def date_check(self):
-        return self.birthday or ""
+    def is_trainer(self):
+        return hasattr(self.owner, 'trainer_profile')
 
 
 class TeamData(models.Model):
@@ -32,12 +32,14 @@ class TeamData(models.Model):
 
 
 class TrainerData(models.Model):
+    owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='trainer_profile', on_delete=models.CASCADE)
+
     team = models.ForeignKey(TeamData, related_name='trainers', on_delete=models.CASCADE)
     vacation_start = models.DateField('Дата начала отпуска', blank=True, null=True)
     vacation_duration = models.DurationField('Длительность отпуска', blank=True, null=True)
     work_hours = models.PositiveIntegerField('Загрузка в часах', validators=[MinValueValidator(1)], null=True,
                                              blank=True)
-    specialization = models.CharField('Специализация', max_length=150, null=True, blank=True)
+    specialization = models.CharField('Специализация', max_length=150, blank=True)
 
     class Meta:
         verbose_name = 'Тренер'

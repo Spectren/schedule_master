@@ -1,56 +1,60 @@
 {% load static %}
 
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=0">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0 user-scalable=0" name="viewport">
 
-        <title>
-            {% block title %}
-            {% endblock %}  
-        </title>
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-md navbar-light" style='background-color: #E0DCDC;'>
-                <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mr-3">
-                    <li class="nav-item">
-                    <a class="nav-link" href="/">Главная</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Профиль</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/logout" role="button">Выйти</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/login">Войти</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/auth/register/">Регистрация</a>
-                    </li>
-                    {% endif %}
-                </ul>
-                </div>
-            </nav>
-        </header>
-
-        {% block content %}
+    <title>
+        {% block title %}
         {% endblock %}
-        <!-- <footer>
-            <div class="bimg-4 "></div>
-        </footer> -->
-    </body>
+    </title>
+
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+          integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
+    <script crossorigin="anonymous" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-light" style='background-color: #E0DCDC;'>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler ml-auto" data-target="#navbarSupportedContent" data-toggle="collapse"
+                type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Главная</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile-view' %}">Профиль</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}" role="button">Выйти</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'django_registration_register' %}">Регистрация</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+
+{% block content %}
+{% endblock %}
+<!-- <footer>
+    <div class="bimg-4 "></div>
+</footer> -->
+</body>
 </html>
