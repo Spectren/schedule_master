@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import default_storage
 from json2html import json2html
+
 from django.conf import settings
 from .algo import SchedulerAlgorithm
 
