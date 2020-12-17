@@ -24,14 +24,18 @@ def profile_change_view(request):
     if request.method == "POST":
         user_form = EditUserForm(data=request.POST, instance=request.user)
         mentor_form = EditMentorForm(data=request.POST, files=request.FILES, instance=request.user.profile)
-        trainer_form = EditTrainerForm(data=request.POST, instance=request.user.trainer_profile)
 
         if user_form.is_valid() and mentor_form.is_valid():
             user_form.save()
             mentor_form.save()
             trainer_form.save()
 
-            return HttpResponseRedirect(reverse('profile'))
+        if request.user.profile.is_trainer:
+            trainer_form = EditTrainerForm(data=request.POST, instance=request.user.trainer_profile)
+            if trainer_form.is_valid():
+                trainer_form.save()
+
+        return HttpResponseRedirect(reverse('profile'))
     else:
         user_form = EditUserForm(instance=request.user)
         mentor_form = EditMentorForm(instance=request.user.profile)
