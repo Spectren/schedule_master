@@ -5,49 +5,14 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-3">
-<<<<<<< HEAD
-            <div class="inf-av">
-                <div class="avatar"></div>
-                <p class="main-str">Фамилия</p>
-                <p class="main-str">Имя</p>
-                <div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Специализация
-                    </a>
-                  
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-=======
             <div class="m-auto mb-4">
                 <img class="rounded-circle z-depth-0 w-75 h-75" src="{{ user.profile.avatar.url }}">
->>>>>>> master
             </div>
             <p class="text-center pb-3">{{user.username}}</p>
             <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-change' %}" style="text-decoration: none; color: black;">Изменить данные</a>
         </div>
-<<<<<<< HEAD
-        <div class="col-lg-4">
-            <div class="inf">
-                <h3>Учетные данные</h3>
-                <p class="str">ФИО</p>
-                <p class="main-str">Фамилия Имя Отчество</p>
-                <p class="str">Дата рождения</p>
-                <p class="main-str">dd-mm-yy</p>
-                <p class="str">Электронная почта</p>
-                <p class="main-str">name@mail.com</p>
-                <p class="str">Пол</p>
-                <p class="main-str">Мужской\Женский</p>
-                <p class="str">Телефон</p>
-                <p class="main-str">88005553535</p>
-                <!--to profile-change.html-->
-                <a href="/profile/change/" class="str">Изменить данные</a>
-=======
         <div class="col-lg-5">
             <div class="pl-5">
                 <h3 class='pb-4'>Учетные данные</h3>
@@ -75,7 +40,6 @@
                 <p class="pb-2" style='color: #9A9A9A'>Количество часов загрузки</p>
                 <p class="pb-3">{{ user.trainer_profile.work_hours | default_if_none:"Не указано" }}</p>
                 {% endif %}
->>>>>>> master
             </div>
         </div>
         <div class="col-lg-4">
@@ -91,7 +55,4 @@
         </div>
     </div>
 </div>
-<footer>
-    <div class="bimg-4"></div>
-</footer>
-{% endblock %}                                                        
+{% endblock %}
