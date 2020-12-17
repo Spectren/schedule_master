@@ -3,7 +3,7 @@ from random import choice
 import numpy as np
 from collections import defaultdict
 from operator import itemgetter
-from json import dumps
+from json import dumps, dump
 
 # tmp_table = pd.read_excel("./Таблица с переменными и данными.xlsx", sheet_name='Таблица с занятиями')
 #
@@ -43,7 +43,7 @@ class SchedulerAlgorithm:
         return teacher_id_to_workdays_
 
     def __init__(self, excel_file_path_name: str):
-        self.lesson_table = self.preprocess_file(excel_file_path_name)
+        #self.lesson_table = self.preprocess_file(excel_file_path_name)
         self.lesson_table = pd.read_excel(excel_file_path_name, sheet_name='Sheet1')
         self.teachers_table = pd.read_excel(r'C:\Users\DIVANCO\PycharmProjects\schedule_master\Sber\Shedule\таблица учителей.xlsx')
         self.teachers_table['teachers_load'] = 0
@@ -152,10 +152,8 @@ class SchedulerAlgorithm:
             lesson_duration_days = lesson[2]  # Длительность занятия в днях
             lesson_duration_hours = lesson[3]  # Длительность занятия в часах
             number_of_trainers = lesson[4]  # Количество тренеров, которые будут проводить занятие
-            lesson_title = lesson[5] # Название урока и доп инфа
-
-            suitable_teachers = self.teachers_table[
-                self.teachers_table['trainer_specialization'].str.contains(lesson_specialization)]
+            lesson_title = lesson[5]  # Название урока и доп инфа
+            suitable_teachers = self.teachers_table[self.teachers_table['trainer_specialization'].str.contains(lesson_specialization)]
             suitable_teacher_id = []  # Id тренера или тренеров, которым назначено занятие
             lesson_date_time = []  # Дата или даты (если урок идёт несколько дней) проведения уроков
 
@@ -211,42 +209,42 @@ class SchedulerAlgorithm:
                 print('Количество учителей не может быть меньше 1')
                 break
 
-            print('Учителю/лям с id =', *suitable_teacher_id, 'назначено занятие с id =', lesson_id,
-                  'и специализацией', lesson_specialization, 'на', *list(map(str, lesson_date_time)))
+            #print('Учителю/лям с id =', *suitable_teacher_id, 'назначено занятие с id =', lesson_id,
+                 # 'и специализацией', lesson_specialization, 'на', *list(map(str, lesson_date_time)))
 
         json_ret = {'teachers': []}
         prev_r = None
         i = -1
         for r in sorted(ret, key=itemgetter(0, 3)):
+            print(r)
             if r[0] != prev_r:
                 i += 1
                 prev_r = r[0]
                 json_ret["teachers"].append(
                     {
-                        "teacher_id": r[0],
-                        "teacher_name": r[4],
+                        #"teacher_id": r[0],
+                        "teacher_name": r[5],
                         # "specializations": "wot, csgo",
                         # "trainer_vacation": null,
                         # "lesson_start": "10:00:00",
                         # "load": 108,
                         "lessons": [
                             {
-                                "lesson_id": r[1],
+                                #"lesson_id": r[1],
                                 "lesson_datetime": r[3],
                                 "lesson_specialization": r[2],
-                                "lesson_title": r[5]
+                                "lesson_title": r[4]
                             }
                         ]
                     }
                 )
-
             elif r[0] == prev_r:
                 json_ret["teachers"][i]["lessons"].append(
                     {
-                        "lesson_id": r[1],
+                        #"lesson_id": r[1],
                         "lesson_datetime": r[3],
                         "lesson_specialization": r[2],
-                        "lesson_title": r[5]
+                        "lesson_title": r[4]
                     }
                 )
 
