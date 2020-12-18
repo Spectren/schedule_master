@@ -12,6 +12,8 @@
                 <img class="rounded-circle z-depth-0 w-75 h-75" src="{{ user.profile.avatar.url }}">
             </div>
             <p class="text-center pb-3">{{ user.username }}</p>
+            <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}"
+               style="text-decoration: none; color: black;" style="border: 4px double black;padding: 10px;">Назад</a>
         </div>
         <div class="col-lg-6">
             <div class="pl-5">
@@ -21,50 +23,10 @@
                     {% fullurl 'team-ref' team.pk %}
                 </a>
                 </p>
-                <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}"
-                   style="text-decoration: none; color: black;">Назад</a>
                 <div class="mt-5 mb-5">
                     {% autoescape off %}
                     <div class="container">
                         {% for inf in data.teachers %}
-<<<<<<< Updated upstream
-                        <div class="border border-secondary m-2 p-2">
-                            <a data-target="#i{{ inf.teacher_id }}" data-toggle="collapse">
-
-
-                                <h3>{{ inf.teacher_name }}</h3>
-                                <p>Загрузка в часах: {{ inf.load }}</p>
-                                <div class="collapse" id="i{{ inf.teacher_id }}">
-                                    <table class="table table-hover table-dark">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Дата и время урока</th>
-                                            <th scope="col">Длительность урока</th>
-                                            <th scope="col">Специальность урока</th>
-                                            <th scope="col">Тема урока</th>
-                                        </tr>
-                                        </thead>
-                                        {% for lessons_list in inf.lessons %}
-                                        <tr>
-                                            <td>
-                                                {{ lessons_list.lesson_datetime }}
-                                            </td>
-                                            <td>
-                                                {{ lessons_list.lesson_duration }}
-                                            </td>
-                                            <td>
-                                                {{ lessons_list.lesson_specialization }}
-                                            </td>
-                                            <td>
-                                                {{ lessons_list.lesson_title }}
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </table>
-                                </div>
-                            </a>
-                        </div>
-=======
                             <div class="border border-secondary m-2 p-2">
                                 <a data-toggle="collapse" data-target="#i{{ inf.teacher_id }}">
                                     <h3>{{ inf.teacher_name }}</h3>
@@ -99,7 +61,6 @@
                                     </div>
                                 </a>
                             </div>
->>>>>>> Stashed changes
                         {% endfor %}
                     </div>
                     {% endautoescape %}
@@ -123,9 +84,9 @@
         <div class="mt-5 mb-5">
             <form enctype="multipart/form-data" method='POST'>
                 {% csrf_token %}
-                <label for="myfile">Choose file to upload</label>
+                <label for="myfile">Выберите файл</label>
                 <input accept=".xlsx" id="myfile" name="myfile" type="file">
-                <button type="submit">Upload</button>
+                <button class="btn btn-secondary" type="submit">Загрузить</button>
             </form>
         </div>
     </div>
