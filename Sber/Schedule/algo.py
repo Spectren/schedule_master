@@ -46,7 +46,7 @@ class SchedulerAlgorithm:
     def create_schedule2(self):
         ret = []
         if len(self.np_lesson_table) == 0:
-            return 'Занятий нет'
+            return {'teachers': []}, []
 
         if self.np_lesson_table.shape[1] != 6:
             return 'Ваша таблица имеет неверное количество столбцов'

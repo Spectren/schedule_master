@@ -14,6 +14,7 @@ from .forms import EditMentorForm, EditTrainerForm, EditUserForm, MentorRegistra
     TrainerRegistrationForm
 from .models import MentorData, TeamData, TrainerData
 from Schedule.algo import SchedulerAlgorithm
+import pandas as pd
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -177,7 +178,8 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
 
         _ = default_storage.save(myfile.name, myfile)
         sa = SchedulerAlgorithm(f"{settings.MEDIA_ROOT}/{myfile.name}", ('2020/10/1', '2021/12/31'))
-        lessons_table, _ = sa.create_schedule2()
+        lessons_table, excel_lessons_table = sa.create_schedule2()
+
 
         self.object = self.get_object()
 
