@@ -172,6 +172,7 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
         return {**context, **{
             'user': self.request.user,
             'trainers_list': context['team'].trainers.all(),
+            #'upload': self.request.user.profile.upload.path,
             #'schedule': self.request.schedule
         }}
 
@@ -187,11 +188,12 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
 
     def post(self, request, *args, **kwargs):
         myfile = request.FILES['myfile']
-
         _ = default_storage.save(myfile.name, myfile)
         sa = SchedulerAlgorithm(f"{settings.MEDIA_ROOT}/{myfile.name}", ('2020/10/1', '2021/12/31'))
         lessons_table, excel_lessons_table = sa.create_schedule2()
-        pd.DataFrame(excel_lessons_table).to_excel(f"{settings.MEDIA_ROOT}/output.xlsx")
+
+        pd.DataFrame(excel_lessons_table).to_excel(f"{settings.MEDIA_ROOT}/{self.request.user.profile.upload}/output.xlsx")#{settings.MEDIA_ROOT}/output.xlsx")
+        #print('=' + str(self.request.user.profile.upload.url))
 
         self.object = self.get_object()
 

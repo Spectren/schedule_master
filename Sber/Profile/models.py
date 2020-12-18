@@ -5,6 +5,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class MentorData(models.Model):
+    def user_directory_path(instance, filename):
+        # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+        return 'user_{0}/{1}'.format(instance.user.id, filename)
+
     owner = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile', on_delete=models.CASCADE)
     patronymic = models.CharField('Отчество', blank=True, max_length=33)
     birthday = models.DateField('Дата рождения', blank=True, null=True)
@@ -12,6 +16,7 @@ class MentorData(models.Model):
     city = models.CharField('Город', blank=True, max_length=20)
     sex = models.SmallIntegerField('Пол', choices=[(0, 'Мужской'), (1, 'Женский')], default=0)
     avatar = models.ImageField('Аватарка', upload_to='uploads/%Y/%m/%d/', default='default.jpg')
+    upload = models.FileField(upload_to=user_directory_path)
     #schedule = models.FileField('Таблица', upload_to='uploads/tables/%Y/%m/%d/')
 
     class Meta:
