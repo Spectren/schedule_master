@@ -104,3 +104,12 @@ body{
     background-size: cover;
     width: 100%;
 }
+/*----*Registration error styles----*/
+.errorlist {
+    list-style-type: none;
+    padding: 0
+}
+.errorlist {
+    color: red;
+}
+/*---------------------------------*/

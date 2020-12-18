@@ -1,9 +1,29 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 
+{% block title %}Создать команду{% endblock %}
+
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {% bootstrap_field form.team_name %}
-</form>
+    <div class='container'>
+        <div class='row mb-4 justify-content-center align-items-center h-100 mr-2 ml-2 mb-5'>
+            <div class='col-12 сol-sm-8 col-md-6 col-lg-5 col-xl-4 text-center mt-3'>
+                <div class='card' style="background-color: hsl(0, 6%, 76%);">
+                    <div class='card-body'>
+                        <form action='profile/create_team/' class="needs-validation" method='POST' novalidate>
+                            {% csrf_token %}
+                            <div class='form-group mb-3'>
+                                {{ form.non_field_errors }}
+                                {% bootstrap_field form.team_name %}
+                            </div>
+                            <button class="btn btn-secondary w-75 mb-3 mt-1" type='submit'>Создать</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
+<footer>
+    <div class="bimg-4 fixed-bottom"></div>
+</footer>
 {% endblock %}
