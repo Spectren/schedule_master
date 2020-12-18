@@ -12,6 +12,7 @@ class MentorData(models.Model):
     city = models.CharField('Город', blank=True, max_length=20)
     sex = models.SmallIntegerField('Пол', choices=[(0, 'Мужской'), (1, 'Женский')], default=0)
     avatar = models.ImageField('Аватарка', upload_to='uploads/%Y/%m/%d/', default='default.jpg')
+    #schedule = models.FileField('Таблица', upload_to='uploads/tables/%Y/%m/%d/')
 
     class Meta:
         verbose_name = 'Ментор'

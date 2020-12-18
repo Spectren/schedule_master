@@ -14,6 +14,7 @@ from .forms import EditMentorForm, EditTrainerForm, EditUserForm, MentorRegistra
     TrainerRegistrationForm
 from .models import MentorData, TeamData, TrainerData
 from Schedule.algo import SchedulerAlgorithm
+import os
 import pandas as pd
 
 
@@ -171,7 +172,18 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
         return {**context, **{
             'user': self.request.user,
             'trainers_list': context['team'].trainers.all(),
+            #'schedule': self.request.schedule
         }}
+
+    # def download(request, path):
+    #     file_path = os.path.join(settings.MEDIA_ROOT, path)
+    #     if os.path.exists(file_path):
+    #         with open(file_path, 'rb') as fh:
+    #             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+    #             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+    #             return response
+    #     raise Http404
+
 
     def post(self, request, *args, **kwargs):
         myfile = request.FILES['myfile']
@@ -179,7 +191,7 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
         _ = default_storage.save(myfile.name, myfile)
         sa = SchedulerAlgorithm(f"{settings.MEDIA_ROOT}/{myfile.name}", ('2020/10/1', '2021/12/31'))
         lessons_table, excel_lessons_table = sa.create_schedule2()
-
+        pd.DataFrame(excel_lessons_table).to_excel(f"{settings.MEDIA_ROOT}/output.xlsx")
 
         self.object = self.get_object()
 
