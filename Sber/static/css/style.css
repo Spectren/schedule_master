@@ -87,7 +87,7 @@ body{
  }
  .bimg-4{
     background: url(../images/flat-lay-desk-dark.png) 100% 100% no-repeat;
-    height: 236px;
+    height: 165px;
     background-size: cover;
     width: 100%;
 }
@@ -107,9 +107,11 @@ body{
 /*----*Registration error styles----*/
 .errorlist {
     list-style-type: none;
-    padding: 0
+    padding: 0;
+    background-color:hsla(3, 100%, 77%, 0.534);
+    text-align: start;
 }
 .errorlist {
-    color: red;
+    color: black;
 }
 /*---------------------------------*/

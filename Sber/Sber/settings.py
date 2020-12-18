@@ -20,6 +20,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'HomePage',
     'Profile',
+    'Schedule',
+
     'phonenumber_field',
     'bootstrap4',
     'django.contrib.admin',

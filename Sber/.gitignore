@@ -2,5 +2,5 @@ db.sqlite3
 static
 __pycache__
 emails
-venv
 Profile/migrations
+media
