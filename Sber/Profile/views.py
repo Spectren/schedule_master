@@ -1,19 +1,18 @@
+from django.conf import settings
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, request
-from django.shortcuts import render
+from django.core.files.storage import default_storage
+from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, FormView, TemplateView
 from django_registration import signals
 from django_registration.backends.activation.views import RegistrationView
-from django.core.files.storage import default_storage
-from django.conf import settings
 
+from Schedule.algo import SchedulerAlgorithm
 from .forms import EditMentorForm, EditTrainerForm, EditUserForm, MentorRegistrationForm, TeamGenerationForm, \
     TrainerRegistrationForm
 from .models import MentorData, TeamData, TrainerData
-from Schedule.algo import SchedulerAlgorithm
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):

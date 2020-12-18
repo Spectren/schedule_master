@@ -48,7 +48,7 @@
             <div class="mb-5">
                 <h3 class='pb-2 d-flex justify-content-center' style="font-size: 23x;">Мои команды:</h3>
                 {% for team in teams %}
-                <a href="{% url 'team-detail' team.pk %}" class="mt-3 d-flex flex-column align-items-start"
+                <a class="mt-3 d-flex flex-column align-items-start" href="{% url 'team-detail' team.pk %}"
                    style="text-decoration: none;  color: blue;">{{ team.team_name }}</a>
                 {% empty %}
                 <p class="d-flex justify-content-center pb-3 mt-4" style='color: #9A9A9A'>У вас нет комманд</p>

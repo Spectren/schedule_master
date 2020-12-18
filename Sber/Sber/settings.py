@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'HomePage',
     'Profile',
     'Schedule',
-
+    'fullurl',
     'phonenumber_field',
     'bootstrap4',
     'django.contrib.admin',

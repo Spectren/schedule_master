@@ -4,24 +4,24 @@
 {% block title %}Расписание{% endblock %}
 
 {% block content %}
-    {% autoescape off %}
-    <div class="container">
-        {% for inf in data.teachers %}
-        <div class="border border-secondary m-2 p-2">
-            <a data-toggle="collapse" data-target="#i{{ inf.teacher_id }}">
+{% autoescape off %}
+<div class="container">
+    {% for inf in data.teachers %}
+    <div class="border border-secondary m-2 p-2">
+        <a data-target="#i{{ inf.teacher_id }}" data-toggle="collapse">
 
-            
+
             <h3>{{ inf.teacher_name }}</h3>
             <p>Загрузка в часах: {{ inf.load }}</p>
             <div class="collapse" id="i{{ inf.teacher_id }}">
                 <table class="table table-hover table-dark">
                     <thead>
-                        <tr>
-                            <th scope="col">Дата и время урока</th>
-                            <th scope="col">Длительность урока</th>
-                            <th scope="col">Специальность урока</th>
-                            <th scope="col">Тема урока</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">Дата и время урока</th>
+                        <th scope="col">Длительность урока</th>
+                        <th scope="col">Специальность урока</th>
+                        <th scope="col">Тема урока</th>
+                    </tr>
                     </thead>
                     {% for lessons_list in inf.lessons %}
                     <tr>
@@ -42,8 +42,8 @@
                 </table>
             </div>
         </a>
-        </div>
-        {% endfor %}
     </div>
-    {% endautoescape %}
+    {% endfor %}
+</div>
+{% endautoescape %}
 {% endblock %}

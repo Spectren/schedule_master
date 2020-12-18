@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load fullurl %}
 
 {% block title %}{{ team.team_name }}{% endblock %}
 
@@ -16,7 +17,9 @@
             <div class="pl-5">
                 <h3 class='pb-4'>Ваша команда: {{ team.team_name }}</h3>
                 <p class="pb-2" style='color: #9A9A9A'>Ссылка для приглашения:</p>
-                <p class="pb-3" id="copytext"><a href="{% url 'team-ref' team.pk %}">{% url 'team-ref' team.pk %}</a>
+                <p class="pb-3" id="copytext"><a href="{% fullurl 'team-ref' team.pk %}">
+                    {% fullurl 'team-ref' team.pk %}
+                </a>
                 </p>
                 <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}"
                    style="text-decoration: none; color: black;">Назад</a>
@@ -24,42 +27,42 @@
                     {% autoescape off %}
                     <div class="container">
                         {% for inf in data.teachers %}
-                            <div class="border border-secondary m-2 p-2">
-                                <a data-toggle="collapse" data-target="#i{{ inf.teacher_id }}">
+                        <div class="border border-secondary m-2 p-2">
+                            <a data-target="#i{{ inf.teacher_id }}" data-toggle="collapse">
 
 
-                                    <h3>{{ inf.teacher_name }}</h3>
-                                    <p>Загрузка в часах: {{ inf.load }}</p>
-                                    <div class="collapse" id="i{{ inf.teacher_id }}">
-                                        <table class="table table-hover table-dark">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">Дата и время урока</th>
-                                                <th scope="col">Длительность урока</th>
-                                                <th scope="col">Специальность урока</th>
-                                                <th scope="col">Тема урока</th>
-                                            </tr>
-                                            </thead>
-                                            {% for lessons_list in inf.lessons %}
-                                                <tr>
-                                                    <td>
-                                                        {{ lessons_list.lesson_datetime }}
-                                                    </td>
-                                                    <td>
-                                                        {{ lessons_list.lesson_duration }}
-                                                    </td>
-                                                    <td>
-                                                        {{ lessons_list.lesson_specialization }}
-                                                    </td>
-                                                    <td>
-                                                        {{ lessons_list.lesson_title }}
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-                                </a>
-                            </div>
+                                <h3>{{ inf.teacher_name }}</h3>
+                                <p>Загрузка в часах: {{ inf.load }}</p>
+                                <div class="collapse" id="i{{ inf.teacher_id }}">
+                                    <table class="table table-hover table-dark">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Дата и время урока</th>
+                                            <th scope="col">Длительность урока</th>
+                                            <th scope="col">Специальность урока</th>
+                                            <th scope="col">Тема урока</th>
+                                        </tr>
+                                        </thead>
+                                        {% for lessons_list in inf.lessons %}
+                                        <tr>
+                                            <td>
+                                                {{ lessons_list.lesson_datetime }}
+                                            </td>
+                                            <td>
+                                                {{ lessons_list.lesson_duration }}
+                                            </td>
+                                            <td>
+                                                {{ lessons_list.lesson_specialization }}
+                                            </td>
+                                            <td>
+                                                {{ lessons_list.lesson_title }}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </a>
+                        </div>
                         {% endfor %}
                     </div>
                     {% endautoescape %}
@@ -70,11 +73,11 @@
             <div>
                 <h3 class='pb-4'>Члены команды:</h3>
                 {% for trainer in trainers_list %}
-                    <div class="mb-3">
-                        {{ trainer.owner.username }}
-                    </div>
-                    {% empty %}
-                    <p class="pb-2" style='color: #9A9A9A'>У вас нет членов команды</p>
+                <div class="mb-3">
+                    {{ trainer.owner.username }}
+                </div>
+                {% empty %}
+                <p class="pb-2" style='color: #9A9A9A'>У вас нет членов команды</p>
                 {% endfor %}
             </div>
         </div>

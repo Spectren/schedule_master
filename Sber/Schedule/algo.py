@@ -1,10 +1,9 @@
-import pandas as pd
-from random import choice
-import numpy as np
-from collections import defaultdict
 from operator import itemgetter
-from json import dumps, dump
+
 import holidays
+import numpy as np
+import pandas as pd
+
 
 class SchedulerAlgorithm:
     def preprocess_file(self, lessons_excel: str):
@@ -66,7 +65,7 @@ class SchedulerAlgorithm:
             number_of_trainers = lesson[4]  # Количество тренеров, которые будут проводить занятие
             lesson_title = lesson[5]  # Название урока и доп инфа
 
-            #free_teachers = self.teachers_table.loc[self.teachers_table.index.isin(free_teachers_id)]
+            # free_teachers = self.teachers_table.loc[self.teachers_table.index.isin(free_teachers_id)]
             # suitable_teachers = self.teachers_table.loc[self.teachers_table.index.isin(free_teachers_id)][
             #    self.teachers_table['trainer_specialization'].str.contains(lesson_specialization)]
             suitable_teachers = self.teachers_table[
@@ -91,7 +90,7 @@ class SchedulerAlgorithm:
                     try:
                         lesson_date = self.teacher_id_to_workdays[suitable_teacher_id[0]].pop(0)
                     except:
-                        #free_teachers_id.remove(suitable_teacher_id[0])
+                        # free_teachers_id.remove(suitable_teacher_id[0])
                         break
 
                         # print("слишком мало учителей")
@@ -174,7 +173,7 @@ class SchedulerAlgorithm:
                         "load": self.teachers_table.at[r[0], 'teachers_load'],
                         "lessons": [
                             {
-                                #"lesson_id": r[1],
+                                # "lesson_id": r[1],
                                 "lesson_datetime": r[3],
                                 "lesson_duration": r[6],
                                 "lesson_specialization": r[2],
@@ -186,7 +185,7 @@ class SchedulerAlgorithm:
             elif r[0] == prev_r:
                 json_ret["teachers"][i]["lessons"].append(
                     {
-                        #"lesson_id": r[1],
+                        # "lesson_id": r[1],
                         "lesson_datetime": r[3],
                         "lesson_duration": r[6],
                         "lesson_specialization": r[2],
