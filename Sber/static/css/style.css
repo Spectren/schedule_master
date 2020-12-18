@@ -115,3 +115,6 @@ body{
     color: black;
 }
 /*---------------------------------*/
+.env:not(:hover):not(.collapsed) { background-color:  #bbb; }
+
+.env:hover { background-color: #bbb; }

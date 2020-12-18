@@ -6,12 +6,6 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-lg-3">
-            <div class="d-flex align-items-center flex-column mb-4">
-                <img class="rounded-circle z-depth-0 w-75 h-75" src="{{ user.profile.avatar.url }}">
-            </div>
-            <p class="text-center pb-3">{{ user.username }}</p>
-        </div>
         <div class="col-lg-6">
             <div class="pl-5">
                 <h3 class='pb-4'>Ваша команда: {{ team.team_name }}</h3>
@@ -20,50 +14,48 @@
                 </p>
                 <a class="d-flex justify-content-center mb-5 mt-5" href="{% url 'profile-view' %}"
                    style="text-decoration: none; color: black;">Назад</a>
-                <div class="mt-5 mb-5">
-                    {% autoescape off %}
-                    <div class="container">
-                        {% for inf in data.teachers %}
-                            <div class="border border-secondary m-2 p-2">
-                                <a data-toggle="collapse" data-target="#i{{ inf.teacher_id }}">
-
-
-                                    <h3>{{ inf.teacher_name }}</h3>
-                                    <p>Загрузка в часах: {{ inf.load }}</p>
-                                    <div class="collapse" id="i{{ inf.teacher_id }}">
-                                        <table class="table table-hover table-dark">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">Дата и время урока</th>
-                                                <th scope="col">Длительность урока</th>
-                                                <th scope="col">Специальность урока</th>
-                                                <th scope="col">Тема урока</th>
-                                            </tr>
-                                            </thead>
-                                            {% for lessons_list in inf.lessons %}
-                                                <tr>
-                                                    <td>
-                                                        {{ lessons_list.lesson_datetime }}
-                                                    </td>
-                                                    <td>
-                                                        {{ lessons_list.lesson_duration }}
-                                                    </td>
-                                                    <td>
-                                                        {{ lessons_list.lesson_specialization }}
-                                                    </td>
-                                                    <td>
-                                                        {{ lessons_list.lesson_title }}
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-                                </a>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                {% autoescape off %}
+                <div class="container">
+                    {% for inf in data.teachers %}
+                        <div class="border border-secondary m-2 p-2 env collapsed" data-toggle="collapse" data-target="#i{{ inf.teacher_id }}">
+                            <h3>{{ inf.teacher_name }}</h3>
+                            <p>Загрузка в часах: {{ inf.load }}</p>
+                            <div class="collapse" id="i{{ inf.teacher_id }}">
+                                <table class="table table-hover table-striped table-light">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Дата и время урока</th>
+                                        <th scope="col">Длительность урока</th>
+                                        <th scope="col">Специальность урока</th>
+                                        <th scope="col">Тема урока</th>
+                                    </tr>
+                                    </thead>
+                                    {% for lessons_list in inf.lessons %}
+                                        <tr>
+                                            <td>
+                                                {{ lessons_list.lesson_datetime }}
+                                            </td>
+                                            <td>
+                                                {{ lessons_list.lesson_duration }}
+                                            </td>
+                                            <td>
+                                                {{ lessons_list.lesson_specialization }}
+                                            </td>
+                                            <td>
+                                                {{ lessons_list.lesson_title }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
                             </div>
-                        {% endfor %}
-                    </div>
-                    {% endautoescape %}
+                        </div>
+                    {% endfor %}
                 </div>
+                {% endautoescape %}
             </div>
         </div>
         <div class="col-lg-3">
