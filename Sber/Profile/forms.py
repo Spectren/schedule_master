@@ -14,7 +14,7 @@ class UserFormMixin(ModelForm):
 class MentorFormMixin(ModelForm):
     class Meta:
         model = MentorData
-        exclude = ['id']
+        fields = ['patronymic']
 
 
 class TrainerFormMixin(ModelForm):
@@ -23,12 +23,12 @@ class TrainerFormMixin(ModelForm):
         exclude = ['id']
 
 
-class TrainerRegistrationForm(UserFormMixin, MentorFormMixin, TrainerFormMixin, RegistrationFormUniqueEmail):
-    team = ModelChoiceField(queryset=TeamData.objects.all(), widget=HiddenInput())
-
-
 class MentorRegistrationForm(UserFormMixin, MentorFormMixin, RegistrationFormUniqueEmail):
     pass
+
+
+class TrainerRegistrationForm(MentorRegistrationForm, TrainerFormMixin):
+    team = ModelChoiceField(queryset=TeamData.objects.all(), widget=HiddenInput())
 
 
 class CustomClearableFileInput(FileInput):

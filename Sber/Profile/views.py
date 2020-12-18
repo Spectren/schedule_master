@@ -7,8 +7,9 @@ from django.views.generic import DetailView, FormView, TemplateView
 from django_registration import signals
 from django_registration.backends.activation.views import RegistrationView
 
-from .forms import EditMentorForm, EditTrainerForm, EditUserForm, MentorRegistrationForm, TeamGenerationForm, \
-    TrainerRegistrationForm
+from .forms import EditMentorForm, EditTrainerForm, EditUserForm, MentorFormMixin, MentorRegistrationForm, \
+    TeamGenerationForm, \
+    TrainerFormMixin, TrainerRegistrationForm
 from .models import MentorData, TeamData, TrainerData
 
 
@@ -75,55 +76,43 @@ class MentorRegistrationView(RegistrationView):
     success_url = reverse_lazy("django_registration_complete")
 
     def register(self, form):
-        user = super().register(form)
+        mentor_form = MentorFormMixin(form.data)
 
-        profile_data = MentorData(**{
-            field: value
-            for field, value in form.cleaned_data.items()
-            if field in {*MentorData._meta.get_fields()} - {'owner'}
-        })
+        if mentor_form.is_valid():
+            user = super().register(form)
 
-        profile_data.owner = user
-        profile_data.save()
+            profile_data = mentor_form.save(commit=False)
+            profile_data.owner = user
+            profile_data.save()
 
-        signals.user_registered.send(
-            sender=self.__class__, user=user, request=self.request
-        )
+            signals.user_registered.send(
+                sender=self.__class__, user=user, request=self.request
+            )
 
-        return user
+            return user
 
 
-class TrainerRegistrationView(RegistrationView):
+
+class TrainerRegistrationView(MentorRegistrationView):
     form_class = TrainerRegistrationForm
-    success_url = reverse_lazy("django_registration_complete")
 
     def register(self, form):
-        user = super().register(form)
+        trainer_form = TrainerFormMixin(form.data)
 
-        profile_data = MentorData(**{
-            field: value
-            for field, value in form.cleaned_data.items()
-            if field in MentorData._meta.get_fields()
-        })
+        if trainer_form.is_valid():
+            user = super().register(form)
 
-        profile_data.owner = user
-        profile_data.save()
+            if user:
+                trainer_data = trainer_form.save(commit=False)
+                trainer_data.team = trainer_data.cleaned_data['team']
+                trainer_data.owner = user
+                trainer_data.save()
 
-        trainer_data = TrainerData(**{
-            field: value
-            for field, value in form.cleaned_data.items()
-            if value in {*TrainerData._meta.get_fields()} - {'team'}
-        })
+                signals.user_registered.send(
+                    sender=self.__class__, user=user, request=self.request
+                )
 
-        trainer_data.team = form.cleaned_data['team']
-        trainer_data.owner = user
-        trainer_data.save()
-
-        signals.user_registered.send(
-            sender=self.__class__, user=user, request=self.request
-        )
-
-        return user
+                return user
 
     def get_form(self, form_class=None):
         form_class = form_class or self.get_form_class()
