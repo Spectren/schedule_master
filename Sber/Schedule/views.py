@@ -12,7 +12,7 @@ def sсhedule_views(request):
 
         _ = default_storage.save(myfile.name, myfile)
         sa = SchedulerAlgorithm(f"{settings.MEDIA_ROOT}/{myfile.name}", ('2020/10/1', '2021/12/31'))
-        lessons_table = sa.create_schedule2()
+        lessons_table, _ = sa.create_schedule2()
 
         if isinstance(lessons_table, str):
             return render(request, 'team.html', {"data": lessons_table})

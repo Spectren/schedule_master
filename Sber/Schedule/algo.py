@@ -159,7 +159,10 @@ class SchedulerAlgorithm:
         json_ret = {'teachers': []}
         prev_r = None
         i = -1
-        for r in sorted(ret, key=itemgetter(0, 3)):
+
+        sorted_list_ret = sorted(ret, key=itemgetter(0, 3))
+
+        for r in sorted_list_ret:
             # print(r)
             if r[0] != prev_r:
                 i += 1
@@ -200,9 +203,9 @@ class SchedulerAlgorithm:
 
         # ret_string = json.dumps(json_ret, default=np_encoder)
 
-        return json_ret
+        return json_ret, sorted_list_ret
 
 
 if __name__ == '__main__':
     SA = SchedulerAlgorithm("./таблица занятий с несколькими учителями.xlsx")
-    res = SA.create_schedule2()
+    res, _ = SA.create_schedule2()
