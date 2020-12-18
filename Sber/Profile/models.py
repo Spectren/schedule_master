@@ -36,7 +36,7 @@ class TrainerData(models.Model):
 
     team = models.ForeignKey(TeamData, related_name='trainers', on_delete=models.CASCADE)
     vacation_start = models.DateField('Дата начала отпуска', blank=True, null=True)
-    vacation_duration = models.DurationField('Длительность отпуска', blank=True, null=True)
+    vacation_end = models.DateField('Дата окончания отпуска', blank=True, null=True)
     work_hours = models.PositiveIntegerField('Загрузка в часах', validators=[MinValueValidator(1)], null=True,
                                              blank=True)
     specialization = models.CharField('Специализация', max_length=150, blank=True)

@@ -1,16 +1,20 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, FormView, TemplateView
 from django_registration import signals
 from django_registration.backends.activation.views import RegistrationView
+from django.core.files.storage import default_storage
+from django.conf import settings
 
 from .forms import EditMentorForm, EditTrainerForm, EditUserForm, MentorFormMixin, MentorRegistrationForm, \
     TeamGenerationForm, \
     TrainerFormMixin, TrainerRegistrationForm
 from .models import MentorData, TeamData, TrainerData
+from Schedule.algo import SchedulerAlgorithm
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -156,3 +160,22 @@ class TeamDetailView(LoginRequiredMixin, DetailView):
             'user': self.request.user,
             'trainers_list': context['team'].trainers.all(),
         }}
+
+    def post(self, request, *args, **kwargs):
+        myfile = request.FILES['myfile']
+
+        _ = default_storage.save(myfile.name, myfile)
+        sa = SchedulerAlgorithm(f"{settings.MEDIA_ROOT}/{myfile.name}", ('2020/10/1', '2021/12/31'))
+        lessons_table = sa.create_schedule2()
+
+        self.object = self.get_object()
+
+        if isinstance(lessons_table, str):
+            return self.render_to_response({**self.get_context_data(), **{"data": lessons_table}})
+
+        elif not lessons_table['teachers']:
+            return self.render_to_response({**self.get_context_data(), **{"data": 'Учителей нет'}})
+
+        else:
+
+            return self.render_to_response({**self.get_context_data(), **{"data": lessons_table}})

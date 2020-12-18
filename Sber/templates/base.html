@@ -10,19 +10,20 @@
         {% block title %}
         {% endblock %}
     </title>
-
+    
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
           integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet">
     <script crossorigin="anonymous" integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD"
             src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+            
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-light" style='background-color: #E0DCDC;'>
+    <nav class="navbar navbar-expand-md navbar-light" style='background-color: #ffffff;'>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler ml-auto" data-target="#navbarSupportedContent" data-toggle="collapse"
+                class="navbar-toggler ml-auto mr-auto" data-target="#navbarSupportedContent" data-toggle="collapse"
                 type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,24 +34,23 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile-view' %}">Профиль</a>
+                    <a class="nav-link" href="{% url 'profile-view' %}">{{user.username}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}" role="button">Выйти</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                    <a class="nav-link" href="{% url 'django_registration_register' %}">Регистрация</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'django_registration_register' %}">Регистрация</a>
+                    <a class="nav-link" href="{% url 'login' %}">Войти</a>
                 </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
 </header>
-
 {% block content %}
 {% endblock %}
 <!-- <footer>

@@ -61,7 +61,8 @@ class EditTrainerForm(ModelForm):
         model = TrainerData
         exclude = ['id', 'owner', 'team']
         widgets = {
-            "vacation_start": CustomDateInput()
+            "vacation_start": CustomDateInput(),
+            "vacation_end": CustomDateInput()
         }
 
 
