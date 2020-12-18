@@ -51,13 +51,13 @@ class SchedulerAlgorithm:
         if self.np_lesson_table.shape[1] != 6:
             return 'Ваша таблица имеет неверное количество столбцов'
 
-        free_teachers_id = [i for i in range(len(self.teachers_table))]
-        last_lesson_id = -1
+        # free_teachers_id = [i for i in range(len(self.teachers_table))]
+        # last_lesson_id = -1
 
         for lesson in self.np_lesson_table:
-            if len(free_teachers_id) == 0:
-                last_lesson_id = lesson[0]
-                break
+            # if len(free_teachers_id) == 0:
+            #     last_lesson_id = lesson[0]
+            #     break
 
             lesson_id = lesson[0]  # Id занятия
             lesson_specialization = lesson[1]  # Специализация занятия
@@ -67,7 +67,9 @@ class SchedulerAlgorithm:
             lesson_title = lesson[5]  # Название урока и доп инфа
 
             #free_teachers = self.teachers_table.loc[self.teachers_table.index.isin(free_teachers_id)]
-            suitable_teachers = self.teachers_table.loc[self.teachers_table.index.isin(free_teachers_id)][
+            # suitable_teachers = self.teachers_table.loc[self.teachers_table.index.isin(free_teachers_id)][
+            #    self.teachers_table['trainer_specialization'].str.contains(lesson_specialization)]
+            suitable_teachers = self.teachers_table[
                 self.teachers_table['trainer_specialization'].str.contains(lesson_specialization)]
             lesson_date_time = []  # Дата или даты (если урок идёт несколько дней) проведения уроков
             # Id свободного тренера или тренеров, которым назначено занятие

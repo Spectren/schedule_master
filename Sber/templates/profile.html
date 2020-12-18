@@ -35,8 +35,8 @@
                 <p class="pb-2" style='color: #9A9A9A'>Специализация</p>
                 <p class="pb-3">{{ user.trainer_profile.specialization | default_if_none:"Не указано" }}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Отпуск</p>
-                <p class="pb-3">С {{ user.trainer_profile.vacation_start | default_if_none:"Неуказанная дата" }} до 
-                    {{ user.trainer_profile.vacation_end | default:"неуказанное время" }}</p>
+                <p class="pb-3">{{ user.trainer_profile.vacation_start | default_if_none:"Неуказанная дата" }} на
+                    {{user.trainer_data.vacation_duration | default:"неуказанное время"}}</p>
                 <p class="pb-2" style='color: #9A9A9A'>Количество часов загрузки</p>
                 <p class="pb-3">{{ user.trainer_profile.work_hours | default_if_none:"Не указано" }}</p>
                 {% endif %}
