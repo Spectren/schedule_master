@@ -7,36 +7,142 @@
 
 {% block content %}
 
-<div class="d-none d-lg-block container">
-    <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
-        <div class='row mb-5 mt-5 d-flex justify-content-around'>
-            <div class="col-4 d-flex align-items-center flex-column">
-                <p class="text-center mt-5" style="font-size: 25px;">{{ user.username }}</p>
-                {% bootstrap_field mentor_form.avatar %}
-                <a class="d-flex justify-content-end mb-5 mt-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
+<!-- <div class='d-flex flex-row'>
+    <div class='d-flex flex-column w-25' style="background-color: #112034;">
+        <div class='d-flex flex-row border border-dark py-3 pl-3'>
+            <div class='d-inline-flex'>
+                <img src="{{ user.avatar.url }}" class="rounded-circle p-2 float-right" width="100" height="100">
             </div>
-            <div class="col-4 d-flex align-items-start flex-column">
-                <div class="form-group mb-3">
-                {% bootstrap_field user_form.first_name %}
+            <div class='d-inline-flex flex-column justify-content-center pl-3'>
+                <p class='m-0 font-weight-bolder' style="color: aliceblue;">{{user.username}}</p>
+                <p class='m-0' style="color: aliceblue;">{{user.email}}</p>
+            </div>
+        </div>
+        <div class='nav flex-column nav-pill' id="menu">
+            <a class="nav-link active" id="menu-home-tab" data-toggle="pill" href="#ProfileID">
+                <div class='d-inline-flex fas fa-home p-2 rounded-circle' style="background-color:#6969df; color:white"></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Домашняя страница</p>
                 </div>
-                <div class="form-group mb-3">
-                    {% bootstrap_field user_form.last_name %}
+            </a>
+            <a class="nav-link" id="menu-teams-tab" data-toggle="pill" href="#ScheduleID">
+                <div class='d-inline-flex fas fa-calendar p-2 rounded-circle' style="background-color:#22b07d; color:white"></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Расписание</p>
                 </div>
-                <div class="form-group mb-3">
-                    {% bootstrap_field mentor_form.patronymic %}
+            </a>
+            <a class="nav-link" id="menu-teams-tab" data-toggle="pill" href="#SettingsID">
+                <div class='d-inline-flex fas fa-wrench'></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Настройки</p>
                 </div>
-                <div class='form-group mb-3'>
-                    {% bootstrap_field mentor_form.birthday %}
+            </a>
+            <a class="nav-link" id="menu-teams-tab" data-toggle="pill" href="#HelpID">
+                <div class='d-inline-flex fas fa-question'></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Помощь</p>
                 </div>
-                <div class='form-group mb-3'>
-                    {% bootstrap_field mentor_form.telephone %}
+            </a>
+            <a class="nav-link" href="/profile/">
+                <div class='d-inline-flex fas fa-sign-out-alt'></div>
+                <div class='d-inline-flex'>
+                    <p style="color: aliceblue;">Выйти</p>
                 </div>
-                <div class='form-group mb-3'>
-                    {% bootstrap_field mentor_form.city %}
+            </a>
+        </div>
+    </div>
+    <div class='tab-content'>
+        <div class='tab-pane fade show active' id='ProfileID'>
+            <div class='d-flex flex-column w-25'>
+                <p>HUY</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
+
+            </div>
+        </div>
+        <div class='tab-pane fade' id='ScheduleID'>
+            <div class='d-flex flex-column w-25'>
+                <p>PIZDA</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
+
+            </div>
+        </div>
+        <div class='tab-pane fade' id='SettingsID'>
+            <div class='d-flex flex-column w-25'>
+                <p>MANDA</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
+
+            </div>
+        </div>
+        <div class='tab-pane fade' id='HelpID'>
+            <div class='d-flex flex-column w-25'>
+                <p>SKOVORODA</p>
+            </div>
+            <div class='d-flex flex-column w-50'>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="d-none d-lg-block container">
+    <div class="row mt-5 mb-5">
+        <!--  <div class="col-2 text-center mr-auto">
+            
+           'rounded-circle z-depth-0 w-75 h-75' 
+            <p class="text-center mt-2">{{ user.username }}</p>
+            <a class="d-flex justify-content-end mb-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
+        </div>-->
+        <div class="col-8 ml-auto">
+            <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                <div class='row mb-5 d-flex justify-content-center'>
+                    {% bootstrap_field mentor_form.avatar %}
+                    <p class="text-center mt-2">{{ user.username }}</p>
+                    <a class="d-flex justify-content-end mb-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>
+                </div>
+                <div class="row mb-5 d-flex justify-content-center">
+                    <div class="col-3">
+                        {% bootstrap_field user_form.first_name %}
+                    </div>
+                    <div class="col-3">
+                        {% bootstrap_field user_form.last_name %}
+                    </div>
+                    <div class="col-3">
+                        {% bootstrap_field mentor_form.patronymic %}
+                    </div>
                 </div>
                 <div class='row mb-3 d-flex justify-content-center'>
-                    <div class="form-group d-inline-flex">
+                    <div class='col-3'>
+                        {% bootstrap_field mentor_form.birthday %}
+                    </div>
+                    <div class='col-3'>
+                        {% bootstrap_field mentor_form.telephone %}
+                    </div>
+                </div>
+                <div class="row mb-3 d-flex justify-content-center">
+                    <div class='col-3'>
+                        {% bootstrap_field mentor_form.city %}
+                    </div>
+                </div>    
+                {% if trainer_form %}
+                <div class='row mb-3'>
+                    <div class='col-3'>
+                        {% bootstrap_field trainer_form.specialization %}
+                    </div>
+                    <div class='col-3'>
+                        {% bootstrap_field trainer_form.vacation_start %}
+                        {% bootstrap_field trainer_form.vacation_end %}
+                    </div>
+                    <div class='col-3'>
+                        {% bootstrap_field trainer_form.work_hours %}
+                    </div>
+                </div>
+                {% endif %}
+                <div class='row mb-3 d-flex justify-content-center'>
+                    <div class="form-group d-inline-flex w-50">
                         <legend>Пол:</legend>
                         <div class="form-check ml-4">
                             <input class="form-check-input" name="sex" type="radio"  value="0">
@@ -48,99 +154,67 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            {% if trainer_form %}
-            <div class='col-4 d-flex align-items-start flex-column pl-1'>
-                <div class='form-check mb-3'>
+                <div class="form-group d-flex justify-content-center">
+                    <button class="btn btn-secondary" type="submit">Сохранить</button>
+                </div>
+                {% if user_form.errors or mentor_form.errors %}
+                {% bootstrap_alert user_form.errors alert_type='error' %}
+                {% bootstrap_alert mentor_form.errors alert_type='error' %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<div class="d-lg-none container">
+    <div class="d-flex flex-column align-items-center">
+        <div class="text-center mb-5 mr-5">
+            {% bootstrap_field mentor_form.avatar %}
+            <!-- 'rounded-circle z-depth-0 w-75 h-75' -->
+            <p class="text-center mt-5">{{ user.username }}</p>
+        </div>
+            <form class="needs-validation" method="post" novalidate>
+                {% csrf_token %}
+                <div class='form-group mb-3'>
+                    {% bootstrap_field user_form.first_name %}
+                </div>
+                <div class='form-group mb-3'>
+                    {% bootstrap_field user_form.last_name %}
+                </div>
+                <div class='form-group mb-3'>
+                    {% bootstrap_field mentor_form.patronymic %}
+                </div>
+                <div class='form-group mb-3'>
+                    {% bootstrap_field mentor_form.birthday %}
+                </div>
+                <div class='form-group mb-3'>
+                    {% bootstrap_field mentor_form.telephone %}
+                </div>
+                <div class='form-group mb-3'>
+                    {% bootstrap_field mentor_form.city %}
+                </div>
+
+                {% if trainer_form %}
+                <div class='form-group mb-3'>
                     {% bootstrap_field trainer_form.specialization %}
                 </div>
-                <div class='form-check mb-3'>
+                <div class='form-group mb-3'>
                     {% bootstrap_field trainer_form.vacation_start %}
+                    {% bootstrap_field trainer_form.vacation_end %}
                 </div>
-                <div class='form-check mb-3'>
-                    {% bootstrap_field trainer_form.vacation_duration %}
-                </div>
-                <div class='form-check mb-3'>
+                <div class='form-group mb-3'>
                     {% bootstrap_field trainer_form.work_hours %}
                 </div>
-            </div>
+                {% endif %}
 
-            {% endif %}
-            {% if user_form.errors or mentor_form.errors %}
-            {% bootstrap_alert user_form.errors alert_type='error' %}
-            {% bootstrap_alert mentor_form.errors alert_type='error' %}
-            {% endif %}
-            
-            <div class="form-group d-flex justify-content-center mt-2">
-                <button class="btn btn-secondary" type="submit">Сохранить</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="d-lg-none container col-6 сol-sm-8 col-md-6">
-    <div class="d-flex flex-column align-items-center">
-        <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
-            {% csrf_token %}
-            <div class='form-group mb-3'>
-                <div class="text-center mb-5 mr-5">
-                    <p class="text-center mt-5" style="text-decoration: none; color: black;">{{ user.username }}</p>
-                    {% bootstrap_field mentor_form.avatar %}
+                <div class="form-group d-flex justify-content-center mb-5">
+                    <button class="btn btn-secondary" type="submit">Сохранить</button>
                 </div>
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field user_form.first_name %}
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field user_form.last_name %}
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field mentor_form.patronymic %}
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field mentor_form.birthday %}
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field mentor_form.telephone %}
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field mentor_form.city %}
-            </div>
-
-            {% if trainer_form %}
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field trainer_form.specialization %}
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field trainer_form.vacation_start %}
-                {% bootstrap_field trainer_form.vacation_duration %}
-            </div>
-            <div class='form-group mb-3 w-50'>
-                {% bootstrap_field trainer_form.work_hours %}
-            </div>
-            {% endif %}
-
-            <div class="form-group d-inline-flex">
-                <legend>Пол:</legend>
-                <div class="form-check ml-4">
-                    <input class="form-check-input" name="sex" type="radio"  value="0">
-                    <label class="form-check-label" for="Male">Мужской</label>
-                </div>
-                <div class="form-check ml-2">
-                    <input class="form-check-input" name="sex" type="radio" value="1">
-                    <label class="form-check-label" for="Female">Женский</label>
-                </div>
-            </div>
-
-            {% if user_form.errors or mentor_form.errors %}
-            {% bootstrap_alert user_form.errors alert_type='error' %}
-            {% bootstrap_alert mentor_form.errors alert_type='error' %}
-            {% endif %}
-
-            <div class="form-group d-flex justify-content-center mb-5">
-                <button class="btn btn-secondary" type="submit">Сохранить</button>
-            </div>
-        </form>
-        <a class="d-flex justify-content-center mb-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>   
+                {% if user_form.errors or mentor_form.errors %}
+                {% bootstrap_alert user_form.errors alert_type='error' %}
+                {% bootstrap_alert mentor_form.errors alert_type='error' %}
+                {% endif %}
+            </form>
+            <a class="d-flex justify-content-center mb-5" href="{% url 'profile-view' %}" style="text-decoration: none; color: black;">Назад</a>   
     </div>
 </div>
 {% endblock %}
